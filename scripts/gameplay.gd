@@ -30,13 +30,10 @@ var POINTS_LABEL = null;
 var BALL = preload('res://scenes/ball.tscn');
 var ROW = preload('res://scenes/row.tscn');
 
-func _draw():
-	draw_rect(Rect2(10, 70, 340, 595), Color.black, true)
-
 func _ready() -> void:
 	DRAG = $dragger;
 	SCREEN_SIZE = get_viewport().get_visible_rect().size;
-	START_POINT = Vector2(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - 100);
+	START_POINT = Vector2(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - 200);
 	DANGER_LABEL = get_node('walls/danger_zone/danger/danger_label');
 	BALL_LABEL = get_node("ui/top_container/hbox/ball_number");
 	WAVE_LABEL = get_node("ui/top_container/hbox/wave_label");

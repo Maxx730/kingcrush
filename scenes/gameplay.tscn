@@ -1,0 +1,170 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/gameplay.gd" type="Script" id=1]
+[ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/ball.png" type="Texture" id=3]
+[ext_resource path="res://scenes/row.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 307.852 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 181.263, 38.2136 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 169.8, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 170.769, 31.496 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="gameplay" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="walls" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="wall_right" type="StaticBody2D" parent="walls"]
+editor/display_folded = true
+position = Vector2( 360, 357.063 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_right" groups=[
+"wall",
+]]
+shape = SubResource( 1 )
+
+[node name="wall_left" type="StaticBody2D" parent="walls"]
+editor/display_folded = true
+position = Vector2( 0, 357 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_left" groups=[
+"wall",
+]]
+shape = SubResource( 1 )
+
+[node name="wall_bottom" type="Area2D" parent="walls"]
+editor/display_folded = true
+position = Vector2( 180, 702.214 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_bottom"]
+shape = SubResource( 2 )
+
+[node name="wall_top" type="StaticBody2D" parent="walls"]
+editor/display_folded = true
+position = Vector2( 179.022, 59.8737 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_top"]
+position = Vector2( 1, 0 )
+shape = SubResource( 6 )
+
+[node name="danger_zone" type="Area2D" parent="walls"]
+position = Vector2( 180, 633 )
+
+[node name="collider" type="CollisionShape2D" parent="walls/danger_zone"]
+shape = SubResource( 8 )
+
+[node name="danger" type="ColorRect" parent="walls/danger_zone"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -170.0
+margin_top = -31.0
+margin_right = 170.0
+margin_bottom = 32.0
+color = Color( 1, 0, 0, 0.278431 )
+
+[node name="danger_label" type="Label" parent="walls/danger_zone/danger"]
+margin_right = 339.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 0, 0, 0.27451 )
+text = "DANGER"
+align = 1
+valign = 1
+
+[node name="dragger" type="Line2D" parent="."]
+points = PoolVector2Array( 385.031, 564.511 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 104360705
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 20.0
+
+[node name="ui" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="top_black" type="ColorRect" parent="ui"]
+anchor_right = 1.0
+margin_bottom = 50.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="top_container" type="MarginContainer" parent="ui"]
+anchor_right = 1.0
+margin_left = 15.0
+margin_top = 10.0
+margin_right = -15.0
+
+[node name="hbox" type="HBoxContainer" parent="ui/top_container"]
+margin_right = 330.0
+margin_bottom = 30.0
+
+[node name="TextureRect" type="TextureRect" parent="ui/top_container/hbox"]
+margin_top = 3.0
+margin_right = 24.0
+margin_bottom = 27.0
+size_flags_vertical = 4
+texture = ExtResource( 3 )
+
+[node name="ball_number" type="Label" parent="ui/top_container/hbox"]
+margin_left = 28.0
+margin_right = 126.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 7 )
+text = " X 0"
+
+[node name="wave_label" type="Label" parent="ui/top_container/hbox"]
+margin_left = 130.0
+margin_right = 228.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 11 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="points" type="Label" parent="ui/top_container/hbox"]
+margin_left = 232.0
+margin_right = 330.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 2
+
+[node name="row" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="walls/wall_bottom" to="." method="_on_wall_bottom_body_entered"]

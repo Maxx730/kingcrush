@@ -1,8 +1,10 @@
 extends Node2D
 
 var POINTS = [];
-var BLOCK = preload('res://scenes/block.tscn');
-var ADD_BALL = preload('res://scenes/add_ball.tscn');
+var BLOCK = preload('res://scenes/crate.tscn');
+var POT = preload('res://scenes/pot.tscn');
+var BARREL = preload('res://scenes/barrel.tscn');
+var ADD_BALL = preload('res://scenes/chest.tscn');
 var RAND = RandomNumberGenerator.new();
 
 func _ready() -> void:
@@ -25,6 +27,17 @@ func _random_type(_child):
 		_child.add_child(add_ball);
 	elif rand > 0.85:
 		pass;
+	else:
+		_get_block(_child);
+		
+func _get_block(_child):
+	RAND.randomize();
+	var perc = RAND.randf_range(0, 1);
+	
+	if perc < 0.5:
+		POINTS.append(_child);
+		var barrel = BARREL.instance();
+		_child.add_child(barrel);
 	else:
 		POINTS.append(_child);
 		var block = BLOCK.instance();

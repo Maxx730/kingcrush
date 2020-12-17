@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/ball.png" type="Texture" id=4]
-[ext_resource path="res://scenes/row.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/ball.png" type="Texture" id=3]
+[ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.7529, 307.852 )
@@ -17,25 +16,24 @@ extents = Vector2( 181.263, 38.2136 )
 extents = Vector2( 169.8, 27.4901 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 170.769, 31.496 )
+extents = Vector2( 170.769, 113.479 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 3 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 20.0176, 20 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxTexture" id=8]
 
 [sub_resource type="DynamicFont" id=9]
 size = 32
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [node name="gameplay" type="Node2D"]
 script = ExtResource( 1 )
@@ -51,10 +49,11 @@ tile_data = PoolIntArray( 65536, 536870930, 0, 65537, 536870922, 0, 65538, 53687
 [node name="deco" type="TileMap" parent="."]
 position = Vector2( -12, 0 )
 scale = Vector2( 3, 3 )
+z_index = 3
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 589821, 536870974, 0, 720897, 536870974, 0, 720902, 536870974, 0, 786433, 536870973, 0, 786438, 536870973, 0 )
+tile_data = PoolIntArray( 720897, 536870974, 0, 720902, 536870974, 0, 786433, 536870973, 0, 786438, 536870973, 0 )
 
 [node name="walls" type="Node2D" parent="."]
 editor/display_folded = true
@@ -78,7 +77,6 @@ position = Vector2( 12, 0 )
 shape = SubResource( 1 )
 
 [node name="wall_bottom" type="Area2D" parent="walls"]
-editor/display_folded = true
 position = Vector2( 180, 662.214 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/wall_bottom"]
@@ -92,31 +90,20 @@ position = Vector2( 1, 8 )
 shape = SubResource( 3 )
 
 [node name="danger_zone" type="Area2D" parent="walls"]
-visible = false
 position = Vector2( 180, 633 )
 
 [node name="collider" type="CollisionShape2D" parent="walls/danger_zone"]
 shape = SubResource( 4 )
 
-[node name="danger" type="ColorRect" parent="walls/danger_zone"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -170.0
-margin_top = -31.0
-margin_right = 170.0
-margin_bottom = 32.0
-color = Color( 1, 0, 0, 0.278431 )
+[node name="StaticBody2D" type="StaticBody2D" parent="walls"]
 
-[node name="danger_label" type="Label" parent="walls/danger_zone/danger"]
-margin_right = 339.0
-margin_bottom = 63.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 1, 0, 0, 0.27451 )
-text = "DANGER"
-align = 1
-valign = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2( 60, 600 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/StaticBody2D"]
+position = Vector2( 299.917, 602.781 )
+shape = SubResource( 10 )
 
 [node name="dragger" type="Line2D" parent="."]
 points = PoolVector2Array( 385.031, 564.511 )
@@ -151,7 +138,7 @@ margin_top = 3.0
 margin_right = 24.0
 margin_bottom = 27.0
 size_flags_vertical = 4
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="ball_number" type="Label" parent="ui/top_container/hbox"]
 margin_left = 28.0
@@ -183,21 +170,25 @@ custom_fonts/font = SubResource( 9 )
 text = "0"
 align = 2
 
-[node name="row" parent="." instance=ExtResource( 5 )]
-
-[node name="torch" parent="." instance=ExtResource( 6 )]
-position = Vector2( 59.9824, 575.644 )
-
-[node name="torch2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 299.844, 575.811 )
-
-[node name="torch3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 348.814, 61.2514 )
-
-[node name="torch4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 13.8135, 61.2514 )
-
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
+[node name="lights" type="Node2D" parent="."]
+editor/display_folded = true
+z_index = 4
+
+[node name="torch" parent="lights" instance=ExtResource( 5 )]
+position = Vector2( 59.9824, 575.644 )
+
+[node name="torch2" parent="lights" instance=ExtResource( 5 )]
+position = Vector2( 299.844, 575.811 )
+
+[node name="torch3" parent="lights" instance=ExtResource( 5 )]
+position = Vector2( 348.814, 61.2514 )
+
+[node name="torch4" parent="lights" instance=ExtResource( 5 )]
+position = Vector2( 13.8135, 61.2514 )
+
 [connection signal="body_entered" from="walls/wall_bottom" to="." method="_on_wall_bottom_body_entered"]
+[connection signal="area_entered" from="walls/danger_zone" to="." method="_on_danger_zone_area_entered"]
+[connection signal="body_entered" from="walls/danger_zone" to="." method="_on_danger_zone_body_entered"]

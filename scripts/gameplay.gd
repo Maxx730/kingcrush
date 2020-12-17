@@ -1,6 +1,6 @@
 extends Node2D
 
-export var BALL_AMOUNT = 5;
+export var BALL_AMOUNT = 3;
 
 var DRAG = null;
 var IS_DOWN = false;
@@ -19,13 +19,14 @@ var DANGER_LABEL = null;
 var DANGER_TIME = 1;
 var DANGER_LAST = 0;
 var BALL_LABEL = null;
-var LEVEL_BETWEEN_WAIT = 2;
+var LEVEL_BETWEEN_WAIT = .2;
 var LEVEL_BETWEEN_LAST = 0;
-var INITIAL_ROW_POS = Vector2(179.4, 115.637);
-var WAVE = 1;
+var INITIAL_ROW_POS = Vector2(179.4, 125);
+var WAVE = 0;
 var WAVE_LABEL = null;
 var POINTS = 0;
 var POINTS_LABEL = null;
+var DANGER_AREA = null;
 
 var BALL = preload('res://scenes/ball.tscn');
 var ROW = preload('res://scenes/row.tscn');
@@ -38,8 +39,10 @@ func _ready() -> void:
 	BALL_LABEL = get_node("ui/top_container/hbox/ball_number");
 	WAVE_LABEL = get_node("ui/top_container/hbox/wave_label");
 	POINTS_LABEL = get_node("ui/top_container/hbox/points");
+	DANGER_AREA = get_node('walls/danger_zone');
 	
 	BALL_LABEL.text = ' X ' + String(BALL_AMOUNT);
+	_create_row();
 	
 func _process(delta: float) -> void:
 	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
@@ -149,3 +152,9 @@ func _add_points(value):
 func _add_ball(value):
 	BALL_AMOUNT += value;
 	BALL_LABEL.text = ' X ' + String(BALL_AMOUNT);
+
+func _on_danger_zone_area_entered(area: Area2D) -> void:
+	var object = area.get_parent();
+	
+	if object.is_in_group('chest'):
+		object.queue_free();

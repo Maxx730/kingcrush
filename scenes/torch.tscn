@@ -35,7 +35,7 @@ autoplay = "flame"
 anims/flame = SubResource( 1 )
 
 [node name="light" type="Light2D" parent="."]
-visible = false
+position = Vector2( 0, 15 )
 texture = ExtResource( 3 )
 texture_scale = 3.0
 

@@ -6,6 +6,7 @@ var VELOCITY = Vector2(0, -SPEED);
 var DIR = Vector2(0, -1);
 var GAMEPLAY = null;
 var TRAIL = null;
+var IMPACT = preload("res://scenes/fast_impact.tscn");
 
 func _ready() -> void:
 	TRAIL = $trail;
@@ -30,10 +31,17 @@ func _process(delta: float) -> void:
 				collision.collider._damage_block(1);
 				GAMEPLAY._check_active();
 				GAMEPLAY._add_points(1);
-		elif collision.collider.is_in_group('powerup'):
-			if collision.collider.is_in_group('add_ball'):
+		elif collision.collider.is_in_group('chest'):
+			var chest = collision.collider;
+			
+			if !chest.OPENED:
 				GAMEPLAY._add_ball(1);
-				collision.collider.queue_free();
+				
+			chest._open_chest();
+	
+		var impact = IMPACT.instance();
+		impact.global_position = collision.position;
+		get_parent().add_child(impact);
 
 		VELOCITY = VELOCITY.bounce(collision.normal);
 

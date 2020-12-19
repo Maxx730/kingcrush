@@ -75,8 +75,8 @@ func _process(delta: float) -> void:
 		DANGER_LAST += delta;
 		
 	if ACTIVE > 0:
-		if SPEED_UP_BEGIN > SPEED_UP_TIMER and !get_node('ui/fast_forward').visible:
-			get_node('ui/fast_forward').visible = true;
+		if SPEED_UP_BEGIN > SPEED_UP_TIMER and !get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible:
+			get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = true;
 		else:
 			SPEED_UP_BEGIN += delta;
 		
@@ -148,7 +148,7 @@ func _check_active():
 		LEVEL_BETWEEN_LAST = 0;
 		Engine.time_scale = 1.0;
 		SPEED_UP_BEGIN = 0;
-		get_node('ui/fast_forward').visible = false;
+		get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = false;
 
 func _create_row():
 	if ROW:
@@ -177,4 +177,4 @@ func _on_danger_zone_area_entered(area: Area2D) -> void:
 
 func _on_fast_forward_pressed() -> void:
 	Engine.time_scale = 3;
-	get_node('ui/fast_forward').visible = false;
+	get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = false;

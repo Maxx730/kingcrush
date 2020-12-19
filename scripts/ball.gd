@@ -44,7 +44,9 @@ func _process(delta: float) -> void:
 				get_parent().add_child(mes);
 				
 			chest._open_chest();
-	
+		elif collision.collider.is_in_group('trap'):
+			GAMEPLAY._add_ball(-1);
+			
 		var impact = IMPACT.instance();
 		impact.global_position = collision.position;
 		get_parent().add_child(impact);

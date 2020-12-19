@@ -22,12 +22,12 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.925532 )
 colors = PoolColorArray( 1, 1, 1, 0.745098, 1, 1, 1, 0.14902 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0.082 ), 0.0, 1.02561, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -44,7 +44,7 @@ angular_velocity = 0.382353
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_curve = SubResource( 5 )
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 3 )
 
 [node name="torch" type="Node2D"]
 script = ExtResource( 1 )

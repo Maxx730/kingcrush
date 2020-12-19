@@ -7,6 +7,7 @@ var BARREL = preload('res://scenes/barrel.tscn');
 var ADD_BALL = preload('res://scenes/chest.tscn');
 var TABLE = preload('res://scenes/table.tscn');
 var SPIKE = preload('res://scenes/spike_trap.tscn');
+var PLANT = preload('res://scenes/plant.tscn');
 var RAND = RandomNumberGenerator.new();
 var HAS_CHEST = false;
 var HAS_SPIKE = false;
@@ -49,6 +50,10 @@ func _get_block(_child):
 		POINTS.append(_child);
 		var table = TABLE.instance();
 		_child.add_child(table);
+	elif perc < 0.7 and perc > 0.6:
+		POINTS.append(_child);
+		var plant = PLANT.instance();
+		_child.add_child(plant);
 	elif perc < 0.6:
 		POINTS.append(_child);
 		var barrel = BARREL.instance();

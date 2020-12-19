@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/block.gd" type="Script" id=1]
+[ext_resource path="res://assets/plant.png" type="Texture" id=2]
+[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shake"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.00874429, 0.0166559, 0.0264719, 0.0359719, 0.0448066, 0.0539361, 0.0619247 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1, 0, 3, 4, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 17.9371, 22.332 )
+
+[sub_resource type="DynamicFont" id=3]
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 17.834, 21.4809 )
+
+[node name="block" type="StaticBody2D" groups=[
+"block",
+]]
+script = ExtResource( 1 )
+
+[node name="sprite" type="Sprite" parent="." groups=[
+"block",
+]]
+position = Vector2( 0, 2 )
+scale = Vector2( 2.25, 2.25 )
+texture = ExtResource( 2 )
+hframes = 5
+frame = 3
+
+[node name="anim" type="AnimationPlayer" parent="sprite"]
+autoplay = "shake"
+anims/shake = SubResource( 1 )
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+shape = SubResource( 2 )
+
+[node name="health" type="Label" parent="."]
+visible = false
+margin_left = -3.27797
+margin_top = -31.6179
+margin_right = 28.722
+margin_bottom = -7.61787
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "10"
+align = 1
+valign = 1
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="detector"]
+position = Vector2( -0.22036, 1.8731 )
+shape = SubResource( 4 )
+

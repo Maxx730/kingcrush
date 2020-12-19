@@ -27,6 +27,9 @@ var WAVE_LABEL = null;
 var POINTS = 0;
 var POINTS_LABEL = null;
 var DANGER_AREA = null;
+var SOUNDS = null;
+var SPEED_UP_TIMER = 5;
+var SPEED_UP_BEGIN = 0;
 
 var BALL = preload('res://scenes/ball.tscn');
 var ROW = preload('res://scenes/row.tscn');
@@ -40,6 +43,7 @@ func _ready() -> void:
 	WAVE_LABEL = get_node("ui/top_container/hbox/wave_label");
 	POINTS_LABEL = get_node("ui/top_container/hbox/points");
 	DANGER_AREA = get_node('walls/danger_zone');
+	SOUNDS = $sounds;
 	
 	BALL_LABEL.text = ' X ' + String(BALL_AMOUNT);
 	_create_row();
@@ -47,7 +51,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
 		if LAST_SHOT > SHOT_SPEED and HAS_SHOT:
-			if FIRED < BALL_AMOUNT:
+			if FIRED < global.BALL_AMOUNT:
 				FIRED += 1;
 				LAST_SHOT = 0;
 				
@@ -69,6 +73,12 @@ func _process(delta: float) -> void:
 		DANGER_LAST = 0;
 	else:
 		DANGER_LAST += delta;
+		
+	if ACTIVE > 0:
+		if SPEED_UP_BEGIN > SPEED_UP_TIMER and !get_node('ui/fast_forward').visible:
+			get_node('ui/fast_forward').visible = true;
+		else:
+			SPEED_UP_BEGIN += delta;
 		
 func _input(event: InputEvent) -> void:
 	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
@@ -136,6 +146,9 @@ func _check_active():
 		_move_rows();
 		_create_row();
 		LEVEL_BETWEEN_LAST = 0;
+		Engine.time_scale = 1.0;
+		SPEED_UP_BEGIN = 0;
+		get_node('ui/fast_forward').visible = false;
 
 func _create_row():
 	if ROW:
@@ -146,15 +159,22 @@ func _create_row():
 		WAVE_LABEL.text = String(WAVE);
 		
 func _add_points(value):
-	POINTS += value;
-	POINTS_LABEL.text = String(POINTS);
+	global.SCORE += value;
+	POINTS_LABEL.text = String(global.SCORE);
 	
 func _add_ball(value):
-	BALL_AMOUNT += value;
-	BALL_LABEL.text = ' X ' + String(BALL_AMOUNT);
+	global.BALL_AMOUNT += value;
+	BALL_LABEL.text = ' X ' + String(global.BALL_AMOUNT);
 
 func _on_danger_zone_area_entered(area: Area2D) -> void:
 	var object = area.get_parent();
 	
-	if object.is_in_group('chest'):
+	if object.is_in_group('chest') or object.is_in_group('trap'):
 		object.queue_free();
+	elif object.is_in_group('block'):
+		get_tree().change_scene('res://scenes/game_over.tscn');
+
+
+func _on_fast_forward_pressed() -> void:
+	Engine.time_scale = 3;
+	get_node('ui/fast_forward').visible = false;

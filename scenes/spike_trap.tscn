@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/spike_trap.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.7176, 17.8721 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 1, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17.783, 17.9792 )
+
+[node name="spike_trap" type="StaticBody2D" groups=[
+"trap",
+]]
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+hframes = 4
+
+[node name="anim" type="AnimationPlayer" parent="sprite"]
+autoplay = "anim"
+anims/anim = SubResource( 2 )
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="detector"]
+shape = SubResource( 3 )
+

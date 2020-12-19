@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/kys.wav-3b010a9a974ad1358d9a1cabbefd72eb.sample"
+
+[deps]
+
+source_file="res://assets/kys.wav"
+dest_files=[ "res://.import/kys.wav-3b010a9a974ad1358d9a1cabbefd72eb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

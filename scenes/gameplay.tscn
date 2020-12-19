@@ -1,10 +1,15 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/ball.png" type="Texture" id=3]
-[ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/FastForward1.png" type="Texture" id=5]
+[ext_resource path="res://scripts/fast_forward.gd" type="Script" id=6]
+[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/kys.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/smoke_puff.png" type="Texture" id=9]
+[ext_resource path="res://scripts/block_destroyed.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.7529, 307.852 )
@@ -18,7 +23,7 @@ extents = Vector2( 169.8, 27.4901 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 170.769, 113.479 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 20.0176, 20 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -34,6 +39,23 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=9]
 size = 32
 font_data = ExtResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+flatness = 1.0
+gravity = Vector3( 0, -50, 0 )
+initial_velocity = 16.0
+initial_velocity_random = 0.35
+angular_velocity = 6.01853e-36
+angular_velocity_random = 0.41
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 35.0
+scale = 0.1
+scale_random = 0.05
+color = Color( 1, 1, 1, 0.301961 )
 
 [node name="gameplay" type="Node2D"]
 script = ExtResource( 1 )
@@ -99,11 +121,11 @@ shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D"]
 position = Vector2( 60, 600 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="walls/StaticBody2D"]
 position = Vector2( 299.917, 602.781 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 
 [node name="dragger" type="Line2D" parent="."]
 points = PoolVector2Array( 385.031, 564.511 )
@@ -116,7 +138,6 @@ end_cap_mode = 2
 sharp_limit = 20.0
 
 [node name="ui" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="top_black" type="ColorRect" parent="ui"]
 anchor_right = 1.0
@@ -124,6 +145,7 @@ margin_bottom = 50.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="top_container" type="MarginContainer" parent="ui"]
+editor/display_folded = true
 anchor_right = 1.0
 margin_left = 15.0
 margin_top = 10.0
@@ -131,27 +153,27 @@ margin_right = -15.0
 
 [node name="hbox" type="HBoxContainer" parent="ui/top_container"]
 margin_right = 330.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 
 [node name="TextureRect" type="TextureRect" parent="ui/top_container/hbox"]
-margin_top = 3.0
 margin_right = 24.0
-margin_bottom = 27.0
+margin_bottom = 24.0
 size_flags_vertical = 4
 texture = ExtResource( 3 )
 
 [node name="ball_number" type="Label" parent="ui/top_container/hbox"]
 margin_left = 28.0
 margin_right = 126.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 6 )
 text = " X 0"
+valign = 1
 
 [node name="wave_label" type="Label" parent="ui/top_container/hbox"]
 margin_left = 130.0
 margin_right = 228.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 7 )
@@ -162,13 +184,31 @@ valign = 1
 [node name="points" type="Label" parent="ui/top_container/hbox"]
 margin_left = 232.0
 margin_right = 330.0
-margin_bottom = 30.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 8 )
 custom_fonts/font = SubResource( 9 )
 text = "0"
 align = 2
+
+[node name="fast_forward" type="TextureButton" parent="ui"]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -65.0
+margin_top = -65.0
+margin_right = -25.0
+margin_bottom = -25.0
+texture_normal = ExtResource( 5 )
+expand = true
+script = ExtResource( 6 )
+
+[node name="tween" type="Tween" parent="ui/fast_forward"]
+repeat = true
+playback/repeat = true
 
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
@@ -177,18 +217,33 @@ color = Color( 0.27451, 0.27451, 0.27451, 1 )
 editor/display_folded = true
 z_index = 4
 
-[node name="torch" parent="lights" instance=ExtResource( 5 )]
+[node name="torch" parent="lights" instance=ExtResource( 7 )]
 position = Vector2( 59.9824, 575.644 )
 
-[node name="torch2" parent="lights" instance=ExtResource( 5 )]
+[node name="torch2" parent="lights" instance=ExtResource( 7 )]
 position = Vector2( 299.844, 575.811 )
 
-[node name="torch3" parent="lights" instance=ExtResource( 5 )]
+[node name="torch3" parent="lights" instance=ExtResource( 7 )]
 position = Vector2( 348.814, 61.2514 )
 
-[node name="torch4" parent="lights" instance=ExtResource( 5 )]
+[node name="torch4" parent="lights" instance=ExtResource( 7 )]
 position = Vector2( 13.8135, 61.2514 )
+
+[node name="sounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 2.0
+
+[node name="block_destroyed" type="Particles2D" parent="."]
+position = Vector2( -95.2824, 18.1052 )
+amount = 16
+lifetime = 2.0
+explosiveness = 1.0
+process_material = SubResource( 10 )
+texture = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [connection signal="body_entered" from="walls/wall_bottom" to="." method="_on_wall_bottom_body_entered"]
 [connection signal="area_entered" from="walls/danger_zone" to="." method="_on_danger_zone_area_entered"]
 [connection signal="body_entered" from="walls/danger_zone" to="." method="_on_danger_zone_body_entered"]
+[connection signal="pressed" from="ui/fast_forward" to="." method="_on_fast_forward_pressed"]
+[connection signal="finished" from="sounds" to="." method="_on_AudioStreamPlayer2D_finished"]

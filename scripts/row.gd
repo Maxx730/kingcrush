@@ -5,7 +5,11 @@ var BLOCK = preload('res://scenes/crate.tscn');
 var POT = preload('res://scenes/pot.tscn');
 var BARREL = preload('res://scenes/barrel.tscn');
 var ADD_BALL = preload('res://scenes/chest.tscn');
+var TABLE = preload('res://scenes/table.tscn');
+var SPIKE = preload('res://scenes/spike_trap.tscn');
 var RAND = RandomNumberGenerator.new();
+var HAS_CHEST = false;
+var HAS_SPIKE = false;
 
 func _ready() -> void:
 	for _child in get_children():
@@ -21,10 +25,17 @@ func _random_type(_child):
 	RAND.randomize();
 	var rand = RAND.randf_range(0, 1);
 	
-	if rand > 0.9:
-		POINTS.append(_child);
-		var add_ball = ADD_BALL.instance();
-		_child.add_child(add_ball);
+	if rand > 0.96 and !HAS_CHEST and !HAS_SPIKE:
+		if rand > 0.98:
+			POINTS.append(_child);
+			var add_ball = ADD_BALL.instance();
+			_child.add_child(add_ball);
+			HAS_CHEST = true;
+		else:
+			POINTS.append(_child);
+			var spike = SPIKE.instance();
+			_child.add_child(spike);
+			HAS_SPIKE = true;
 	elif rand > 0.85:
 		pass;
 	else:
@@ -34,7 +45,11 @@ func _get_block(_child):
 	RAND.randomize();
 	var perc = RAND.randf_range(0, 1);
 	
-	if perc < 0.5:
+	if perc < 0.3:
+		POINTS.append(_child);
+		var table = TABLE.instance();
+		_child.add_child(table);
+	elif perc < 0.6:
 		POINTS.append(_child);
 		var barrel = BARREL.instance();
 		_child.add_child(barrel);

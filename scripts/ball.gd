@@ -7,6 +7,7 @@ var DIR = Vector2(0, -1);
 var GAMEPLAY = null;
 var TRAIL = null;
 var IMPACT = preload("res://scenes/fast_impact.tscn");
+var MESSAGE = preload("res://scenes/message.tscn");
 
 func _ready() -> void:
 	TRAIL = $trail;
@@ -28,14 +29,19 @@ func _process(delta: float) -> void:
 	if collision:
 		if collision.collider.is_in_group('block'):
 			if collision.collider.has_method('_damage_block'):
-				collision.collider._damage_block(1);
+				collision.collider._damage_block(global.POWER);
 				GAMEPLAY._check_active();
 				GAMEPLAY._add_points(1);
+				$hit.play();
 		elif collision.collider.is_in_group('chest'):
 			var chest = collision.collider;
 			
 			if !chest.OPENED:
 				GAMEPLAY._add_ball(1);
+				var mes = MESSAGE.instance();
+				mes.global_position = chest.global_position;
+				mes.global_position.x -= 30;
+				get_parent().add_child(mes);
 				
 			chest._open_chest();
 	

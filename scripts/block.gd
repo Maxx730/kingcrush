@@ -5,11 +5,13 @@ export var HITPOINTS = 5;
 var HITPOINT_LABEL = null;
 var RAND = RandomNumberGenerator.new();
 var ANIM = null;
+var GAMEPLAY = null;
 
 func _ready() -> void:
+	GAMEPLAY = get_parent().get_parent().get_parent();
 	RAND.randomize();
 	HITPOINT_LABEL = get_node("health");
-	HITPOINTS = RAND.randi_range(1, 5);
+	HITPOINTS = RAND.randi_range(1, floor(.5 * GAMEPLAY.WAVE + 1));
 	HITPOINT_LABEL.text = String(HITPOINTS);
 	if has_node('sprite/anim'):
 		ANIM = get_node('sprite/anim');

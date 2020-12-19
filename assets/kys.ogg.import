@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/kys.ogg-10bb305f52cb8f3a926147f5a09ba8d3.oggstr"
+
+[deps]
+
+source_file="res://assets/kys.ogg"
+dest_files=[ "res://.import/kys.ogg-10bb305f52cb8f3a926147f5a09ba8d3.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

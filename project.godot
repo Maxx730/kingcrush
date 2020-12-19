@@ -19,6 +19,10 @@ config/name="ballz"
 run/main_scene="res://scenes/gameplay.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://scripts/global.gd"
+
 [display]
 
 window/size/width=360

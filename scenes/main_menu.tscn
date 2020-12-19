@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/play_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/play_button_pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/Share.png" type="Texture" id=5]
+[ext_resource path="res://assets/Gear_Settings.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="main_menu" type="Node2D"]
+
+[node name="map" type="TileMap" parent="."]
+position = Vector2( -12, -4 )
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 0, 17, 0, 1, 10, 0, 2, 11, 0, 3, 10, 0, 4, 65, 0, 5, 83, 0, 6, 66, 0, 7, 10, 0, 65536, 6, 0, 65537, 48, 0, 65538, 48, 0, 65539, 48, 0, 65540, 48, 0, 65541, 48, 0, 65542, 48, 0, 65543, 48, 0, 131072, 6, 0, 131073, 48, 0, 131074, 48, 0, 131075, 48, 0, 131076, 48, 0, 131077, 48, 0, 131078, 48, 0, 131079, 48, 0, 196608, 6, 0, 196609, 48, 0, 196610, 43, 0, 196611, 43, 0, 196612, 43, 0, 196613, 48, 0, 196614, 48, 0, 196615, 48, 0, 262144, 48, 0, 262145, 48, 0, 262146, 65, 0, 262147, 92, 0, 262148, 66, 0, 262149, 48, 0, 262150, 48, 0, 262151, 48, 0, 327680, 48, 0, 327681, 43, 0, 327682, 43, 0, 327683, 43, 0, 327684, 43, 0, 327685, 43, 0, 327686, 43, 0, 327687, 48, 0, 393216, 48, 0, 393217, 43, 0, 393218, 48, 0, 393219, 48, 0, 393220, 48, 0, 393221, 48, 0, 393222, 43, 0, 393223, 48, 0, 458752, 48, 0, 458753, 43, 0, 458754, 48, 0, 458755, 48, 0, 458756, 48, 0, 458757, 48, 0, 458758, 48, 0, 458759, 48, 0, 524288, 48, 0, 524289, 43, 0, 524290, 48, 0, 524291, 48, 0, 524292, 48, 0, 524293, 48, 0, 524294, 48, 0, 524295, 48, 0, 589824, 48, 0, 589825, 43, 0, 589826, 48, 0, 589827, 48, 0, 589828, 48, 0, 589829, 48, 0, 589830, 48, 0, 589831, 48, 0, 655360, 48, 0, 655361, 43, 0, 655362, 48, 0, 655363, 48, 0, 655364, 48, 0, 655365, 48, 0, 655366, 48, 0, 655367, 48, 0, 720896, 48, 0, 720897, 48, 0, 720898, 48, 0, 720899, 48, 0, 720900, 48, 0, 720901, 48, 0, 720902, 48, 0, 720903, 48, 0, 786432, 48, 0, 786433, 48, 0, 786434, 48, 0, 786435, 48, 0, 786436, 48, 0, 786437, 48, 0, 786438, 48, 0, 786439, 48, 0, 851968, 48, 0, 851969, 48, 0, 851970, 48, 0, 851971, 48, 0, 851972, 48, 0, 851973, 48, 0, 851974, 48, 0, 851975, 48, 0, 917504, 48, 0, 917505, 48, 0, 917506, 48, 0, 917507, 48, 0, 917508, 48, 0, 917509, 48, 0, 917510, 48, 0, 917511, 48, 0, 983040, 48, 0, 983041, 48, 0, 983042, 48, 0, 983043, 48, 0, 983044, 48, 0, 983045, 48, 0, 983046, 48, 0, 983047, 48, 0 )
+
+[node name="map2" type="TileMap" parent="."]
+position = Vector2( -12, -4 )
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -65532, 87, 0, -65531, 88, 0, -65530, 89, 0, 0, 17, 0, 1, 10, 0, 2, 11, 0, 3, 10, 0, 4, 84, 0, 5, 85, 0, 6, 86, 0, 7, 18, 0, 65536, 7, 0, 65537, 26, 0, 65538, 29, 0, 65539, 43, 0, 65540, 47, 0, 65541, 48, 0, 65542, 48, 0, 65543, 7, 0, 131072, 8, 0, 131073, 25, 0, 131074, 33, 0, 131075, 43, 0, 131076, 50, 0, 131077, 51, 0, 131078, 51, 0, 131079, 8, 0, 196608, 6, 0, 196609, 43, 0, 196610, 87, 0, 196611, 88, 0, 196612, 89, 0, 196613, 43, 0, 196614, 43, 0, 196615, 6, 0, 262144, 16, 0, 262145, 11, 0, 262146, 84, 0, 262147, 85, 0, 262148, 86, 0, 262149, 10, 0, 262150, 11, 0, 262151, 71, 0, 327680, 8, 0, 327681, 43, 0, 327682, 43, 0, 327684, 43, 0, 327687, 8, 0, 393216, 6, 0, 393217, 43, 0, 393218, 43, 0, 393219, 43, 0, 393220, 43, 0, 393221, 43, 0, 393222, 43, 0, 393223, 7, 0, 458752, 8, 0, 458753, 43, 0, 458754, 43, 0, 458755, 43, 0, 458756, 43, 0, 458757, 43, 0, 458758, 43, 0, 458759, 8, 0, 524288, 7, 0, 524289, 43, 0, 524290, 43, 0, 524291, 43, 0, 524292, 43, 0, 524293, 43, 0, 524294, 43, 0, 524295, 6, 0, 589824, 6, 0, 589825, 43, 0, 589826, 43, 0, 589827, 43, 0, 589828, 43, 0, 589829, 43, 0, 589830, 43, 0, 589831, 6, 0, 655360, 6, 0, 655361, 43, 0, 655362, 43, 0, 655363, 43, 0, 655364, 43, 0, 655365, 43, 0, 655366, 43, 0, 655367, 6, 0, 720896, 48, 0, 720897, 48, 0, 720898, 48, 0, 720899, 48, 0, 720900, 48, 0, 720901, 48, 0, 720902, 48, 0, 720903, 48, 0, 786432, 48, 0, 786433, 48, 0, 786434, 48, 0, 786435, 48, 0, 786436, 48, 0, 786437, 48, 0, 786438, 48, 0, 786439, 48, 0, 851968, 48, 0, 851969, 48, 0, 851970, 48, 0, 851971, 48, 0, 851972, 48, 0, 851973, 48, 0, 851974, 48, 0, 851975, 48, 0, 917504, 48, 0, 917505, 48, 0, 917506, 48, 0, 917507, 48, 0, 917508, 48, 0, 917509, 48, 0, 917510, 48, 0, 917511, 48, 0, 983040, 48, 0, 983041, 48, 0, 983042, 48, 0, 983043, 48, 0, 983044, 48, 0, 983045, 48, 0, 983046, 48, 0, 983047, 48, 0 )
+
+[node name="ui" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="margin" type="MarginContainer" parent="ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="container" type="VBoxContainer" parent="ui/margin"]
+margin_right = 360.0
+margin_bottom = 740.0
+
+[node name="___" type="MarginContainer" parent="ui/margin/container"]
+margin_right = 360.0
+margin_bottom = 244.0
+size_flags_vertical = 3
+
+[node name="title" type="Label" parent="ui/margin/container"]
+visible = false
+margin_top = 334.0
+margin_right = 360.0
+margin_bottom = 369.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME TITLE"
+align = 1
+
+[node name="spacer3" type="MarginContainer" parent="ui/margin/container"]
+margin_top = 248.0
+margin_right = 360.0
+margin_bottom = 492.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/margin/container/spacer3"]
+margin_right = 360.0
+margin_bottom = 244.0
+
+[node name="_" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+editor/display_folded = true
+margin_right = 360.0
+margin_bottom = 96.0
+
+[node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_"]
+margin_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="play_game" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_"]
+margin_left = 36.0
+margin_right = 324.0
+margin_bottom = 96.0
+size_flags_horizontal = 6
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="spacer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_"]
+margin_left = 360.0
+margin_right = 360.0
+margin_bottom = 96.0
+
+[node name="_2" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+margin_top = 100.0
+margin_right = 360.0
+margin_bottom = 196.0
+
+[node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
+margin_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="play_game" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
+margin_left = 36.0
+margin_right = 324.0
+margin_bottom = 96.0
+size_flags_horizontal = 6
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="spacer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
+margin_left = 360.0
+margin_right = 360.0
+margin_bottom = 96.0
+
+[node name="_3" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+editor/display_folded = true
+visible = false
+margin_top = 200.0
+margin_right = 360.0
+margin_bottom = 264.0
+size_flags_vertical = 6
+
+[node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
+margin_right = 94.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="settings" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
+margin_left = 98.0
+margin_right = 162.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 5 )
+
+[node name="settings2" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
+margin_left = 166.0
+margin_right = 260.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
+margin_left = 264.0
+margin_right = 360.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="__" type="MarginContainer" parent="ui/margin/container"]
+margin_top = 496.0
+margin_right = 360.0
+margin_bottom = 740.0
+size_flags_vertical = 3
+

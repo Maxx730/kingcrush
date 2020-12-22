@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/ball.png" type="Texture" id=3]
-[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://assets/Pause.png" type="Texture" id=5]
-[ext_resource path="res://assets/FastForward1.png" type="Texture" id=6]
-[ext_resource path="res://scripts/fast_forward.gd" type="Script" id=7]
-[ext_resource path="res://assets/kys.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/smoke_puff.png" type="Texture" id=9]
-[ext_resource path="res://scripts/block_destroyed.gd" type="Script" id=10]
+[ext_resource path="res://scenes/hit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ball.png" type="Texture" id=4]
+[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/Pause.png" type="Texture" id=6]
+[ext_resource path="res://assets/FastForward1.png" type="Texture" id=7]
+[ext_resource path="res://scripts/fast_forward.gd" type="Script" id=8]
+[ext_resource path="res://assets/kys.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/smoke_puff.png" type="Texture" id=10]
+[ext_resource path="res://scripts/block_destroyed.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.7529, 307.852 )
@@ -25,17 +26,17 @@ extents = Vector2( 170.769, 113.479 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 32
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 32
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxTexture" id=8]
 
 [sub_resource type="DynamicFont" id=9]
 size = 32
-font_data = ExtResource( 4 )
+font_data = ExtResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=10]
 emission_shape = 1
@@ -74,6 +75,7 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="walls" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="wall_right" type="StaticBody2D" parent="walls"]
 position = Vector2( 360, 357.063 )
@@ -122,7 +124,11 @@ begin_cap_mode = 2
 end_cap_mode = 2
 sharp_limit = 20.0
 
+[node name="hit" parent="." instance=ExtResource( 3 )]
+position = Vector2( 203.34, 221.956 )
+
 [node name="ui" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="top_black" type="ColorRect" parent="ui"]
 anchor_right = 1.0
@@ -144,7 +150,7 @@ margin_bottom = 24.0
 margin_right = 24.0
 margin_bottom = 24.0
 size_flags_vertical = 4
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="ball_number" type="Label" parent="ui/top_container/hbox"]
 margin_left = 28.0
@@ -186,40 +192,41 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_right = 93.0
+margin_right = 104.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/HBoxContainer"]
 editor/display_folded = true
-margin_left = 97.0
-margin_right = 129.0
+margin_left = 108.0
+margin_right = 140.0
 margin_bottom = 77.0
 
 [node name="pause" type="TextureButton" parent="ui/HBoxContainer/MarginContainer"]
 margin_right = 32.0
 margin_bottom = 77.0
-texture_normal = ExtResource( 5 )
+texture_normal = ExtResource( 6 )
 
 [node name="MarginContainer4" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 133.0
-margin_right = 226.0
+margin_left = 144.0
+margin_right = 248.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer3" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 230.0
-margin_right = 262.0
+margin_left = 252.0
+margin_right = 252.0
 margin_bottom = 77.0
 
 [node name="fast_forward" type="TextureButton" parent="ui/HBoxContainer/MarginContainer3"]
+visible = false
 margin_right = 32.0
 margin_bottom = 77.0
-texture_normal = ExtResource( 6 )
-script = ExtResource( 7 )
+texture_normal = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="MarginContainer5" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 266.0
+margin_left = 256.0
 margin_right = 360.0
 margin_bottom = 77.0
 size_flags_horizontal = 3
@@ -231,7 +238,7 @@ color = Color( 0.27451, 0.27451, 0.27451, 1 )
 z_index = 4
 
 [node name="sounds" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 pitch_scale = 2.0
 
 [node name="block_destroyed" type="Particles2D" parent="."]
@@ -240,8 +247,8 @@ amount = 16
 lifetime = 2.0
 explosiveness = 1.0
 process_material = SubResource( 10 )
-texture = ExtResource( 9 )
-script = ExtResource( 10 )
+texture = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [connection signal="body_entered" from="walls/wall_bottom" to="." method="_on_wall_bottom_body_entered"]
 [connection signal="area_entered" from="walls/danger_zone" to="." method="_on_danger_zone_area_entered"]

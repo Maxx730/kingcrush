@@ -1,16 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/game_over.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/retry_button.png" type="Texture" id=4]
+[ext_resource path="res://assets/Items_Coin.png" type="Texture" id=4]
+[ext_resource path="res://assets/retry_button.png" type="Texture" id=5]
+[ext_resource path="res://assets/main_menu_button.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
 font_data = ExtResource( 3 )
 
 [node name="game_over" type="Node2D"]
@@ -36,45 +42,75 @@ format = 1
 tile_data = PoolIntArray( 0, 536870930, 0, 1, 536870978, 0, 2, 536871004, 0, 3, 536870977, 0, 4, 536870978, 0, 5, 536871004, 0, 6, 536870977, 0, 7, 536870929, 0, 65536, 536871030, 0, 65543, 536871030, 0, 131072, 536871031, 0, 131079, 536871031, 0, 196608, 536870925, 0, 196615, 536870925, 0, 262144, 536871030, 0, 262151, 536871030, 0, 327680, 536871031, 0, 327687, 536871031, 0, 393216, 536870925, 0, 393223, 536870925, 0, 458752, 536871030, 0, 458759, 536871030, 0, 524288, 536871031, 0, 524295, 536871031, 0, 589824, 536870925, 0, 589831, 536870925, 0, 655360, 536871030, 0, 655367, 536871030, 0, 720896, 536871031, 0, 720903, 536871031, 0, 786432, 536870925, 0, 786439, 536870925, 0, 851968, 536870918, 0, 851975, 536870918, 0, 917504, 6, 0, 917511, 536870919, 0, 983040, 536870934, 0, 983041, 536870978, 0, 983042, 536871004, 0, 983043, 536870977, 0, 983044, 536870978, 0, 983045, 536871004, 0, 983046, 536870977, 0, 983047, 536870935, 0 )
 
 [node name="ui" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="margin" type="MarginContainer" parent="ui"]
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 25.0
-margin_top = -45.5
-margin_right = -25.0
-margin_bottom = 45.5
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_top = -146.0
+margin_bottom = 146.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="container" type="VBoxContainer" parent="ui/margin"]
-margin_right = 310.0
-margin_bottom = 178.0
+margin_right = 360.0
+margin_bottom = 328.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="game_over" type="Label" parent="ui/margin/container"]
-margin_right = 310.0
+margin_right = 360.0
 margin_bottom = 44.0
 custom_fonts/font = SubResource( 1 )
 text = "GAME OVER"
 align = 1
 
-[node name="score" type="Label" parent="ui/margin/container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/margin/container"]
+margin_left = 136.0
 margin_top = 48.0
-margin_right = 310.0
-margin_bottom = 78.0
+margin_right = 224.0
+margin_bottom = 80.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="coin" type="TextureRect" parent="ui/margin/container/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+stretch_mode = 1
+
+[node name="winnings" type="Label" parent="ui/margin/container/HBoxContainer"]
+margin_left = 36.0
+margin_top = 1.0
+margin_right = 88.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 3 )
+text = " X 0"
+
+[node name="score" type="Label" parent="ui/margin/container"]
+margin_top = 84.0
+margin_right = 360.0
+margin_bottom = 128.0
 custom_fonts/font = SubResource( 2 )
 text = "000"
 align = 1
 
 [node name="retry" type="TextureButton" parent="ui/margin/container"]
-margin_left = 11.0
-margin_top = 82.0
-margin_right = 299.0
-margin_bottom = 178.0
+margin_left = 36.0
+margin_top = 132.0
+margin_right = 324.0
+margin_bottom = 228.0
 size_flags_horizontal = 4
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 5 )
 
+[node name="main_menu" type="TextureButton" parent="ui/margin/container"]
+margin_left = 36.0
+margin_top = 232.0
+margin_right = 324.0
+margin_bottom = 328.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 6 )
+
+[connection signal="pressed" from="ui/margin/container/main_menu" to="." method="_on_main_menu_pressed"]

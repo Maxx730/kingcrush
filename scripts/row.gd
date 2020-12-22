@@ -27,7 +27,7 @@ func _random_type(_child):
 	var rand = RAND.randf_range(0, 1);
 	
 	if rand > 0.96 and !HAS_CHEST and !HAS_SPIKE:
-		if rand > 0.98:
+		if rand > 0.88:
 			POINTS.append(_child);
 			var add_ball = ADD_BALL.instance();
 			_child.add_child(add_ball);

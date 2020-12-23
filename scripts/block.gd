@@ -6,6 +6,7 @@ var HITPOINT_LABEL = null;
 var RAND = RandomNumberGenerator.new();
 var ANIM = null;
 var GAMEPLAY = null;
+var DESTROYED_ANIM = preload("res://scenes/block_destroyed.tscn");
 
 func _ready() -> void:
 	GAMEPLAY = get_parent().get_parent().get_parent();
@@ -26,6 +27,9 @@ func _damage_block(value):
 		if ANIM:
 			ANIM.play('shake');
 	else:
+		var damage_end = DESTROYED_ANIM.instance();
+		damage_end.global_position = position;
+		get_parent().add_child(damage_end);
 		self.queue_free();
 		
 	get_parent().get_parent()._check_row();

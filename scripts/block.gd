@@ -12,7 +12,6 @@ func _ready() -> void:
 	GAMEPLAY = get_parent().get_parent().get_parent();
 	RAND.randomize();
 	HITPOINT_LABEL = get_node("health");
-	HITPOINTS = RAND.randi_range(1, floor(.5 * GAMEPLAY.WAVE + 1));
 	HITPOINT_LABEL.text = String(HITPOINTS);
 	if has_node('sprite/anim'):
 		ANIM = get_node('sprite/anim');
@@ -20,6 +19,7 @@ func _ready() -> void:
 		ANIM.connect('animation_finished', self, '_stop_shake');
 	
 func _damage_block(value):
+	print(HITPOINTS);
 	if HITPOINTS - value > 0:
 		HITPOINTS -= value;
 		HITPOINT_LABEL.text = String(HITPOINTS);

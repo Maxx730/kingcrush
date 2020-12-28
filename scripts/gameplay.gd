@@ -42,7 +42,6 @@ func _ready() -> void:
 	SCREEN_SIZE = get_viewport().get_visible_rect().size;
 	START_POINT = Vector2(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - 200);
 	BALL_LABEL = get_node("ui/top_container/hbox/MarginContainer2/HBoxContainer/ball_number");
-	WAVE_LABEL = get_node("ui/top_container/hbox/wave_label");
 	POINTS_LABEL = get_node("ui/top_container/hbox/points");
 	DANGER_AREA = get_node('walls/danger_zone');
 	SOUNDS = $sounds;
@@ -162,7 +161,7 @@ func _create_row():
 		var row = ROW.instance();
 		row.position = INITIAL_ROW_POS;
 		add_child(row);
-		WAVE += 1;
+		global.WAVE += 1;
 		
 func _add_points(value):
 	global.SCORE += value;

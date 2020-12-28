@@ -5,6 +5,7 @@ var DATA_PATH ='user://data.json';
 var BALL_AMOUNT= 3;
 var SCORE = 0;
 var POWER = 1;
+var WAVE = 1;
 
 func _load_data():
 	if _data_exists(DATA_PATH):

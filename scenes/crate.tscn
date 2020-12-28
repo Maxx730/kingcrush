@@ -23,7 +23,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 17.9371, 22.332 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 outline_size = 2
 font_data = ExtResource( 3 )
 
@@ -34,6 +34,7 @@ extents = Vector2( 17.834, 21.4809 )
 "block",
 ]]
 script = ExtResource( 1 )
+HITPOINTS = 2
 
 [node name="sprite" type="Sprite" parent="." groups=[
 "block",
@@ -58,7 +59,7 @@ margin_left = -3.27797
 margin_top = -31.6179
 margin_right = 28.722
 margin_bottom = -7.61787
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "10"
 align = 1
@@ -69,4 +70,3 @@ valign = 1
 [node name="collider" type="CollisionShape2D" parent="detector"]
 position = Vector2( -0.22036, 1.8731 )
 shape = SubResource( 4 )
-

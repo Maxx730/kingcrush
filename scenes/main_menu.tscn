@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
@@ -8,13 +8,16 @@
 [ext_resource path="res://assets/store_button.png" type="Texture" id=6]
 [ext_resource path="res://assets/Share.png" type="Texture" id=7]
 [ext_resource path="res://assets/Gear_Settings.png" type="Texture" id=8]
-[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Items_Coin.png" type="Texture" id=9]
+[ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 32
 font_data = ExtResource( 3 )
 
 [node name="main_menu" type="Node2D"]
@@ -52,29 +55,33 @@ tile_data = PoolIntArray( 1, 93, 0, 2, 107, 0, 3, 97, 0, 4, 100, 0, 5, 85, 0, 65
 [node name="margin" type="MarginContainer" parent="ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -25.0
+margin_bottom = -65.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="container" type="VBoxContainer" parent="ui/margin"]
 margin_right = 360.0
-margin_bottom = 715.0
+margin_bottom = 675.0
 
 [node name="___" type="MarginContainer" parent="ui/margin/container"]
 margin_right = 360.0
-margin_bottom = 221.0
+margin_bottom = 201.0
 size_flags_vertical = 3
 
 [node name="title" type="Label" parent="ui/margin/container/___"]
-margin_top = 81.0
+margin_top = 40.0
 margin_right = 360.0
-margin_bottom = 140.0
+margin_bottom = 161.0
 custom_fonts/font = SubResource( 1 )
-text = "GAME TITLE"
+text = "rabidashes revenge"
 align = 1
+autowrap = true
 
 [node name="spacer3" type="MarginContainer" parent="ui/margin/container"]
-margin_top = 225.0
+margin_top = 205.0
 margin_right = 360.0
-margin_bottom = 489.0
+margin_bottom = 469.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ui/margin/container/spacer3"]
@@ -131,58 +138,115 @@ margin_bottom = 264.0
 size_flags_vertical = 6
 
 [node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_right = 94.0
+margin_right = 70.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="settings" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 98.0
-margin_right = 162.0
+margin_left = 74.0
+margin_right = 138.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 7 )
 
+[node name="MarginContainer3" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
+margin_left = 142.0
+margin_right = 212.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
 [node name="settings2" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 166.0
-margin_right = 260.0
+margin_left = 216.0
+margin_right = 286.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 264.0
+margin_left = 290.0
 margin_right = 360.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="__" type="MarginContainer" parent="ui/margin/container"]
-margin_top = 493.0
+margin_top = 473.0
 margin_right = 360.0
-margin_bottom = 715.0
+margin_bottom = 675.0
 size_flags_vertical = 3
 
-[node name="credits" type="Label" parent="ui/margin/container/__"]
-margin_top = 207.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/margin/container/__"]
 margin_right = 360.0
-margin_bottom = 222.0
-size_flags_vertical = 8
+margin_bottom = 202.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 72.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/margin/container/__/VBoxContainer"]
+margin_top = 76.0
+margin_right = 360.0
+margin_bottom = 108.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
+margin_right = 132.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
+margin_left = 136.0
+margin_right = 168.0
+margin_bottom = 32.0
+texture = ExtResource( 9 )
+
+[node name="coin_count" type="Label" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
+margin_left = 172.0
+margin_top = 1.0
+margin_right = 224.0
+margin_bottom = 31.0
 custom_fonts/font = SubResource( 2 )
-text = "2020 Lumpy Productions"
+text = " X 0"
 align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
+margin_left = 228.0
+margin_right = 360.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer"]
+margin_top = 112.0
+margin_right = 360.0
+margin_bottom = 184.0
+size_flags_vertical = 3
+
+[node name="credits" type="Label" parent="ui/margin/container/__/VBoxContainer"]
+margin_top = 188.0
+margin_right = 360.0
+margin_bottom = 202.0
+size_flags_vertical = 8
+text = "2020 Lumpy Productions"
+align = 2
+
+[node name="ad" type="Node" parent="ui/margin/container"]
+script = ExtResource( 11 )
+banner_on_top = false
+banner_id = "ca-app-pub-7417016807781274/7204296394"
+max_ad_content_rate = "T"
 
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
 [node name="torches" type="Node2D" parent="."]
 
-[node name="torch2" parent="torches" instance=ExtResource( 9 )]
+[node name="torch2" parent="torches" instance=ExtResource( 10 )]
 position = Vector2( 350, 164 )
 
 [node name="torches2" type="Node2D" parent="."]
 position = Vector2( -336, 0 )
 
-[node name="torch" parent="torches2" instance=ExtResource( 9 )]
+[node name="torch" parent="torches2" instance=ExtResource( 10 )]
 position = Vector2( 351, 478.568 )
-
 [connection signal="pressed" from="ui/margin/container/spacer3/VBoxContainer/_/play_game" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="ui/margin/container/spacer3/VBoxContainer/_2/store_button" to="." method="_on_store_button_pressed"]
+[connection signal="rewarded_video_loaded" from="ui/margin/container/ad" to="." method="_on_ad_rewarded_video_loaded"]

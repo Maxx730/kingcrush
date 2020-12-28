@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/game_over.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Items_Coin.png" type="Texture" id=4]
 [ext_resource path="res://assets/retry_button.png" type="Texture" id=5]
 [ext_resource path="res://assets/main_menu_button.png" type="Texture" id=6]
+[ext_resource path="res://assets/continue_button.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -54,7 +55,7 @@ size_flags_vertical = 0
 
 [node name="container" type="VBoxContainer" parent="ui/margin"]
 margin_right = 360.0
-margin_bottom = 328.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -105,13 +106,21 @@ margin_bottom = 228.0
 size_flags_horizontal = 4
 texture_normal = ExtResource( 5 )
 
-[node name="main_menu" type="TextureButton" parent="ui/margin/container"]
+[node name="continue" type="TextureButton" parent="ui/margin/container"]
 margin_left = 36.0
 margin_top = 232.0
 margin_right = 324.0
 margin_bottom = 328.0
 size_flags_horizontal = 4
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 7 )
 
+[node name="main_menu" type="TextureButton" parent="ui/margin/container"]
+margin_left = 36.0
+margin_top = 332.0
+margin_right = 324.0
+margin_bottom = 428.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 6 )
 [connection signal="pressed" from="ui/margin/container/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ui/margin/container/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="ui/margin/container/main_menu" to="." method="_on_main_menu_pressed"]

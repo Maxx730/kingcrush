@@ -1,15 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/gameplay.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/hit.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ball.png" type="Texture" id=4]
-[ext_resource path="res://assets/SpencersSpookyFontMONO.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/Pause.png" type="Texture" id=6]
 [ext_resource path="res://assets/FastForward1.png" type="Texture" id=7]
 [ext_resource path="res://scripts/fast_forward.gd" type="Script" id=8]
 [ext_resource path="res://assets/kys.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/continue_button.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.7529, 307.852 )
@@ -27,13 +28,21 @@ extents = Vector2( 170.769, 113.479 )
 size = 32
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 32
-font_data = ExtResource( 5 )
-
 [sub_resource type="StyleBoxTexture" id=7]
 
 [sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=11]
 size = 32
 font_data = ExtResource( 5 )
 
@@ -57,7 +66,6 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="walls" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="wall_right" type="StaticBody2D" parent="walls"]
 position = Vector2( 360, 357.063 )
@@ -110,7 +118,6 @@ sharp_limit = 20.0
 position = Vector2( 203.34, 221.956 )
 
 [node name="ui" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="top_black" type="ColorRect" parent="ui"]
 anchor_right = 1.0
@@ -118,46 +125,58 @@ margin_bottom = 50.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="top_container" type="MarginContainer" parent="ui"]
-editor/display_folded = true
 anchor_right = 1.0
 margin_left = 15.0
 margin_top = 10.0
 margin_right = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="hbox" type="HBoxContainer" parent="ui/top_container"]
 margin_right = 330.0
-margin_bottom = 24.0
+margin_bottom = 32.0
 
-[node name="TextureRect" type="TextureRect" parent="ui/top_container/hbox"]
+[node name="MarginContainer" type="MarginContainer" parent="ui/top_container/hbox"]
+margin_right = 121.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="pause" type="TextureButton" parent="ui/top_container/hbox/MarginContainer"]
+margin_right = 121.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 6 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="ui/top_container/hbox"]
+margin_left = 125.0
+margin_right = 205.0
+margin_bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/top_container/hbox/MarginContainer2"]
+margin_right = 80.0
+margin_bottom = 32.0
+
+[node name="TextureRect" type="TextureRect" parent="ui/top_container/hbox/MarginContainer2/HBoxContainer"]
+margin_top = 4.0
 margin_right = 24.0
-margin_bottom = 24.0
+margin_bottom = 28.0
 size_flags_vertical = 4
 texture = ExtResource( 4 )
 
-[node name="ball_number" type="Label" parent="ui/top_container/hbox"]
+[node name="ball_number" type="Label" parent="ui/top_container/hbox/MarginContainer2/HBoxContainer"]
 margin_left = 28.0
-margin_right = 126.0
-margin_bottom = 24.0
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 5 )
 text = " X 0"
 valign = 1
 
-[node name="wave_label" type="Label" parent="ui/top_container/hbox"]
-margin_left = 130.0
-margin_right = 228.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-custom_fonts/font = SubResource( 6 )
-text = "1"
-align = 1
-valign = 1
-
 [node name="points" type="Label" parent="ui/top_container/hbox"]
-margin_left = 232.0
+margin_left = 209.0
 margin_right = 330.0
-margin_bottom = 24.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 7 )
@@ -166,55 +185,165 @@ text = "0"
 align = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ui"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -77.0
+margin_top = 663.0
+margin_right = 48.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer2" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_right = 104.0
-margin_bottom = 77.0
+margin_right = 12.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ui/HBoxContainer"]
-editor/display_folded = true
-margin_left = 108.0
-margin_right = 140.0
-margin_bottom = 77.0
-
-[node name="pause" type="TextureButton" parent="ui/HBoxContainer/MarginContainer"]
-margin_right = 32.0
-margin_bottom = 77.0
-texture_normal = ExtResource( 6 )
-
 [node name="MarginContainer4" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 144.0
-margin_right = 248.0
-margin_bottom = 77.0
+margin_left = 16.0
+margin_right = 28.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer3" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 252.0
-margin_right = 252.0
-margin_bottom = 77.0
+margin_left = 32.0
+margin_right = 32.0
 
 [node name="fast_forward" type="TextureButton" parent="ui/HBoxContainer/MarginContainer3"]
 visible = false
 margin_right = 32.0
-margin_bottom = 77.0
+margin_bottom = 32.0
 texture_normal = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="MarginContainer5" type="MarginContainer" parent="ui/HBoxContainer"]
-margin_left = 256.0
-margin_right = 360.0
-margin_bottom = 77.0
+margin_left = 36.0
+margin_right = 48.0
 size_flags_horizontal = 3
 
+[node name="pause_menu" type="MarginContainer" parent="ui"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -191.0
+margin_top = -134.0
+margin_right = 194.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="ui/pause_menu"]
+visible = false
+margin_right = 385.0
+margin_bottom = 301.0
+color = Color( 0, 0, 0, 0.658824 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="ui/pause_menu"]
+margin_right = 385.0
+margin_bottom = 301.0
+
+[node name="contain" type="VBoxContainer" parent="ui/pause_menu/margin"]
+margin_right = 385.0
+margin_bottom = 301.0
+
+[node name="paused_label" type="Label" parent="ui/pause_menu/margin/contain"]
+margin_right = 385.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 9 )
+text = "PAUSED"
+align = 1
+
+[node name="TextureButton" type="TextureButton" parent="ui/pause_menu/margin/contain"]
+margin_left = 48.0
+margin_top = 63.0
+margin_right = 336.0
+margin_bottom = 159.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="ui/pause_menu/margin/contain/TextureButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -52.0
+margin_top = -18.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Continue"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="ui/pause_menu/margin/contain"]
+margin_left = 48.0
+margin_top = 163.0
+margin_right = 336.0
+margin_bottom = 259.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="ui/pause_menu/margin/contain/TextureButton2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.0
+margin_top = -18.0
+margin_right = 74.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Quit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="speed_up_btn" type="MarginContainer" parent="ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message_button" type="TextureButton" parent="ui/speed_up_btn"]
+margin_right = 360.0
+margin_bottom = 740.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message" type="Label" parent="ui/speed_up_btn/message_button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -109.0
+margin_top = -15.0
+margin_right = 109.0
+margin_bottom = 15.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 11 )
+text = "Tap to speed up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="shade" type="CanvasModulate" parent="."]
-color = Color( 0.27451, 0.27451, 0.27451, 1 )
+color = Color( 0.392157, 0.392157, 0.392157, 1 )
 
 [node name="lights" type="Node2D" parent="."]
 z_index = 4
@@ -228,9 +357,11 @@ position = Vector2( 16.1542, 522.512 )
 
 [node name="torch2" parent="." instance=ExtResource( 10 )]
 position = Vector2( 349.154, 522.512 )
-
 [connection signal="body_entered" from="walls/wall_bottom" to="." method="_on_wall_bottom_body_entered"]
 [connection signal="area_entered" from="walls/danger_zone" to="." method="_on_danger_zone_area_entered"]
-[connection signal="body_entered" from="walls/danger_zone" to="." method="_on_danger_zone_body_entered"]
+[connection signal="pressed" from="ui/top_container/hbox/MarginContainer/pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="ui/HBoxContainer/MarginContainer3/fast_forward" to="." method="_on_fast_forward_pressed"]
+[connection signal="pressed" from="ui/pause_menu/margin/contain/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="ui/pause_menu/margin/contain/TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="ui/speed_up_btn/message_button" to="." method="_on_message_button_pressed"]
 [connection signal="finished" from="sounds" to="." method="_on_AudioStreamPlayer2D_finished"]

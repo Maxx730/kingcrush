@@ -8,6 +8,7 @@ var ADD_BALL = preload('res://scenes/chest.tscn');
 var TABLE = preload('res://scenes/table.tscn');
 var SPIKE = preload('res://scenes/spike_trap.tscn');
 var PLANT = preload('res://scenes/plant.tscn');
+var SANDBAG = preload('res://scenes/sandbag.tscn');
 var RAND = RandomNumberGenerator.new();
 var HAS_CHEST = false;
 var HAS_SPIKE = false;

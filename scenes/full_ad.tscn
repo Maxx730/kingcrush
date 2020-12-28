@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
+[ext_resource path="res://scripts/full_ad.gd" type="Script" id=2]
+
+[node name="full_ad" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ad" type="Node" parent="."]
+script = ExtResource( 1 )
+banner_on_top = false
+banner_size = "FULL_BANNER"
+rewarded_id = "ca-app-pub-7417016807781274/3263857356"
+[connection signal="interstitial_closed" from="ad" to="." method="_on_ad_interstitial_closed"]
+[connection signal="interstitial_loaded" from="ad" to="." method="_on_ad_interstitial_loaded"]
+[connection signal="rewarded" from="ad" to="." method="_on_ad_rewarded"]
+[connection signal="rewarded_video_closed" from="ad" to="." method="_on_ad_rewarded_video_closed"]
+[connection signal="rewarded_video_loaded" from="ad" to="." method="_on_ad_rewarded_video_loaded"]

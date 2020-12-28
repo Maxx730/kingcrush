@@ -35,4 +35,3 @@ end_cap_mode = 2
 [node name="hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 pitch_scale = 2.0
-

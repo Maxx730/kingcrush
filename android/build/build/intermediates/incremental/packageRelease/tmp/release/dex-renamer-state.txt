@@ -1,0 +1,4 @@
+#Sat Dec 26 16:58:34 EST 2020
+base.0=/home/john/kingcrush/android/build/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

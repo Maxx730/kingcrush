@@ -30,16 +30,18 @@ var DANGER_AREA = null;
 var SOUNDS = null;
 var SPEED_UP_TIMER = 5;
 var SPEED_UP_BEGIN = 0;
+var RETRIED = false;
+var PAUSED = false;
 
 var BALL = preload('res://scenes/ball.tscn');
 var ROW = preload('res://scenes/row.tscn');
 
 func _ready() -> void:
+	Engine.time_scale = 1.0;
 	DRAG = $dragger;
 	SCREEN_SIZE = get_viewport().get_visible_rect().size;
 	START_POINT = Vector2(SCREEN_SIZE.x / 2, SCREEN_SIZE.y - 200);
-	DANGER_LABEL = get_node('walls/danger_zone/danger/danger_label');
-	BALL_LABEL = get_node("ui/top_container/hbox/ball_number");
+	BALL_LABEL = get_node("ui/top_container/hbox/MarginContainer2/HBoxContainer/ball_number");
 	WAVE_LABEL = get_node("ui/top_container/hbox/wave_label");
 	POINTS_LABEL = get_node("ui/top_container/hbox/points");
 	DANGER_AREA = get_node('walls/danger_zone');
@@ -47,6 +49,10 @@ func _ready() -> void:
 	
 	BALL_LABEL.text = ' X ' + String(BALL_AMOUNT);
 	_create_row();
+	
+	if RETRIED:
+		var balls = get_tree().get_nodes_in_group('ball');
+		print(balls.size());
 	
 func _process(delta: float) -> void:
 	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
@@ -57,7 +63,7 @@ func _process(delta: float) -> void:
 				
 				var ball = BALL.instance();
 				ball._start(_get_mouse_dir().angle(), START_POINT, self);
-				add_child(ball);
+				call_deferred('add_child', ball);
 				ACTIVE += 1;
 			else:
 				FIRED = 0;
@@ -75,40 +81,41 @@ func _process(delta: float) -> void:
 		DANGER_LAST += delta;
 		
 	if ACTIVE > 0:
-		if SPEED_UP_BEGIN > SPEED_UP_TIMER and !get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible:
-			get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = true;
+		if SPEED_UP_BEGIN > SPEED_UP_TIMER and !get_node("ui/speed_up_btn").visible:
+			get_node("ui/speed_up_btn").visible = true;
 		else:
 			SPEED_UP_BEGIN += delta;
 		
 func _input(event: InputEvent) -> void:
-	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
-		if event is InputEventScreenTouch and DRAG:
-			if !event.pressed and ACTIVE == 0:
-				HAS_SHOT = true;
+	if !PAUSED:
+		if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
+			if event is InputEventScreenTouch and DRAG:
+				if !event.pressed and ACTIVE == 0:
+					HAS_SHOT = true;
+					DRAG.points = PoolVector2Array();
+					LAST_SHOT = 0;
+					
+			elif event is InputEventScreenDrag and DRAG and !HAS_SHOT and ACTIVE == 0:
+				COLLISION_POINTS = PoolVector2Array();
 				DRAG.points = PoolVector2Array();
-				LAST_SHOT = 0;
+				var space = get_world_2d().direct_space_state;
+				LAST_MOUSE = get_global_mouse_position();
+				var dir = _get_mouse_dir();
+				var collision = space.intersect_ray(START_POINT,dir * 1000);
 				
-		elif event is InputEventScreenDrag and DRAG and !HAS_SHOT and ACTIVE == 0:
-			COLLISION_POINTS = PoolVector2Array();
-			DRAG.points = PoolVector2Array();
-			var space = get_world_2d().direct_space_state;
-			LAST_MOUSE = get_global_mouse_position();
-			var dir = _get_mouse_dir();
-			var collision = space.intersect_ray(START_POINT,dir * 1000);
-			
-			if collision:
-				COLLISION_POINTS.append(collision.position);
+				if collision:
+					COLLISION_POINTS.append(collision.position);
+					
+					var angle = dir.angle_to(collision.normal);
+					var next = collision.normal.rotated(angle) * -1000 + collision.position;
+					var next_collision = space.intersect_ray(collision.position, next, [collision.collider]);
+		
+					if next_collision:
+						COLLISION_POINTS.append(next_collision.position);
+					
+					_draw_path();
+					update();
 				
-				var angle = dir.angle_to(collision.normal);
-				var next = collision.normal.rotated(angle) * -1000 + collision.position;
-				var next_collision = space.intersect_ray(collision.position, next, [collision.collider]);
-	
-				if next_collision:
-					COLLISION_POINTS.append(next_collision.position);
-				
-				_draw_path();
-				update();
-			
 func _draw_path():
 	DRAG.add_point(START_POINT);
 	
@@ -148,7 +155,7 @@ func _check_active():
 		LEVEL_BETWEEN_LAST = 0;
 		Engine.time_scale = 1.0;
 		SPEED_UP_BEGIN = 0;
-		get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = false;
+		get_node("ui/speed_up_btn").visible = false;
 
 func _create_row():
 	if ROW:
@@ -156,7 +163,6 @@ func _create_row():
 		row.position = INITIAL_ROW_POS;
 		add_child(row);
 		WAVE += 1;
-		WAVE_LABEL.text = String(WAVE);
 		
 func _add_points(value):
 	global.SCORE += value;
@@ -173,8 +179,31 @@ func _on_danger_zone_area_entered(area: Area2D) -> void:
 		object.queue_free();
 	elif object.is_in_group('block'):
 		get_tree().change_scene('res://scenes/game_over.tscn');
+		var balls = get_tree().get_nodes_in_group('ball');
+		print(balls.size())
 
 
 func _on_fast_forward_pressed() -> void:
 	Engine.time_scale = 3;
 	get_node('ui/HBoxContainer/MarginContainer3/fast_forward').visible = false;
+
+
+func _on_pause_pressed():
+	PAUSED = true;
+	Engine.time_scale = 0;
+	get_node("ui/pause_menu").visible = true;
+
+
+func _on_TextureButton_pressed():
+	PAUSED = false;
+	Engine.time_scale = 1;
+	get_node("ui/pause_menu").visible = false;
+
+
+func _on_TextureButton2_pressed():
+	get_tree().change_scene("res://scenes/main_menu.tscn");
+
+
+func _on_message_button_pressed():
+	Engine.time_scale = 3;
+	get_node("ui/speed_up_btn").visible = false;

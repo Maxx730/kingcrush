@@ -41,10 +41,11 @@ func _process(delta: float) -> void:
 			var chest = collision.collider;
 			
 			if !chest.OPENED:
-				GAMEPLAY._add_ball(1);
+				chest._apply_chest();
 				var mes = MESSAGE.instance();
+				mes.get_node('powerup_message').text = chest.TYPE.message;
 				mes.global_position = chest.global_position;
-				mes.global_position.x -= 30;
+				mes.global_position.x -= 50;
 				get_parent().add_child(mes);
 				
 			chest._open_chest();
@@ -60,4 +61,6 @@ func _process(delta: float) -> void:
 
 		VELOCITY = VELOCITY.bounce(collision.normal);
 
-		
+func _apply_chest_type(chest):
+	if chest:
+		print(chest.TYPE);

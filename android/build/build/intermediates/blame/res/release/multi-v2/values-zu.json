@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/john/kingcrush/android/build/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zu/values-zu.xml",
+            "outputFile": "/home/maxkinghorn/Godot/kingcrush/android/build/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "/home/john/.gradle/caches/transforms-2/files-2.1/947833f03979c6d84fcd9a8feba7ce42/core-1.0.0/res/values-zu/values-zu.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "908",
-                        "endColumns": "100",
-                        "endOffsets": "1004"
-                    }
-                },
-                {
-                    "source": "/home/john/.gradle/caches/transforms-2/files-2.1/d2b33543bae7602ce099acbee5a37cae/jetified-play-services-basement-17.0.0/res/values-zu/values.xml",
+                    "source": "/home/maxkinghorn/.gradle/caches/transforms-2/files-2.1/ac54bcd6b5db44fa384debdd05164920/jetified-play-services-basement-17.0.0/res/values-zu/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/john/.gradle/caches/transforms-2/files-2.1/6489572557dc9f51171ccf1da6c4a2e6/jetified-play-services-ads-19.3.0/res/values-zu/values.xml",
+                    "source": "/home/maxkinghorn/.gradle/caches/transforms-2/files-2.1/7520f6919482a7f51a8cbcb2937299ee/jetified-play-services-ads-19.3.0/res/values-zu/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10",
                         "startColumns": "0,0,0,0,0,0,0",
@@ -52,6 +35,23 @@
                         "startOffsets": "296,376,497,567,636,721,829",
                         "endColumns": "79,120,69,68,84,107,78",
                         "endOffsets": "371,492,562,631,716,824,903"
+                    }
+                },
+                {
+                    "source": "/home/maxkinghorn/.gradle/caches/transforms-2/files-2.1/947833f03979c6d84fcd9a8feba7ce42/core-1.0.0/res/values-zu/values-zu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "908",
+                        "endColumns": "100",
+                        "endOffsets": "1004"
                     }
                 }
             ]

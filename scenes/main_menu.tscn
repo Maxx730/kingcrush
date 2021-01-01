@@ -1,22 +1,18 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/play_button.png" type="Texture" id=4]
-[ext_resource path="res://assets/play_button_pressed.png" type="Texture" id=5]
-[ext_resource path="res://assets/store_button.png" type="Texture" id=6]
-[ext_resource path="res://assets/Share.png" type="Texture" id=7]
-[ext_resource path="res://assets/Gear_Settings.png" type="Texture" id=8]
-[ext_resource path="res://assets/Items_Coin.png" type="Texture" id=9]
+[ext_resource path="res://assets/Whacky_Joe.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=10]
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=11]
-
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 3 )
+[ext_resource path="res://assets/title_logo.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 3 )
 
@@ -66,173 +62,133 @@ margin_bottom = 675.0
 
 [node name="___" type="MarginContainer" parent="ui/margin/container"]
 margin_right = 360.0
-margin_bottom = 201.0
+margin_bottom = 165.0
 size_flags_vertical = 3
 
-[node name="title" type="Label" parent="ui/margin/container/___"]
-margin_top = 40.0
+[node name="Sprite" type="Sprite" parent="ui/margin/container/___"]
+position = Vector2( 180.648, 134.374 )
+texture = ExtResource( 12 )
+
+[node name="____" type="MarginContainer" parent="ui/margin/container"]
+margin_top = 169.0
 margin_right = 360.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 1 )
-text = "rabidashes revenge"
-align = 1
-autowrap = true
+margin_bottom = 335.0
+size_flags_vertical = 3
 
 [node name="spacer3" type="MarginContainer" parent="ui/margin/container"]
-margin_top = 205.0
+margin_top = 339.0
 margin_right = 360.0
-margin_bottom = 469.0
+margin_bottom = 505.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ui/margin/container/spacer3"]
 margin_right = 360.0
-margin_bottom = 264.0
+margin_bottom = 166.0
 
 [node name="_" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
 margin_right = 360.0
-margin_bottom = 96.0
+margin_bottom = 52.0
 
 [node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_"]
-margin_bottom = 96.0
+margin_bottom = 52.0
 size_flags_vertical = 3
 
-[node name="play_game" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_"]
-margin_left = 36.0
-margin_right = 324.0
-margin_bottom = 96.0
-size_flags_horizontal = 6
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
+[node name="play_game" type="Button" parent="ui/margin/container/spacer3/VBoxContainer/_"]
+margin_left = 4.0
+margin_right = 356.0
+margin_bottom = 52.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "PLAY"
+flat = true
 
 [node name="spacer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_"]
 margin_left = 360.0
 margin_right = 360.0
-margin_bottom = 96.0
+margin_bottom = 52.0
 
-[node name="_2" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
-margin_top = 100.0
+[node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+margin_top = 56.0
 margin_right = 360.0
-margin_bottom = 196.0
-
-[node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
-margin_bottom = 96.0
+margin_bottom = 110.0
 size_flags_vertical = 3
 
-[node name="store_button" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
-margin_left = 36.0
-margin_right = 324.0
-margin_bottom = 96.0
-size_flags_horizontal = 6
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 5 )
+[node name="_2" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+margin_top = 114.0
+margin_right = 360.0
+margin_bottom = 166.0
+
+[node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
+margin_bottom = 52.0
+size_flags_vertical = 3
+
+[node name="store_button" type="Button" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
+margin_left = 4.0
+margin_right = 356.0
+margin_bottom = 52.0
+focus_mode = 0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "SHOP"
+flat = true
 
 [node name="spacer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_2"]
 margin_left = 360.0
 margin_right = 360.0
-margin_bottom = 96.0
-
-[node name="_3" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
-margin_top = 200.0
-margin_right = 360.0
-margin_bottom = 264.0
-size_flags_vertical = 6
-
-[node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_right = 70.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-
-[node name="settings" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 74.0
-margin_right = 138.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 7 )
-
-[node name="MarginContainer3" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 142.0
-margin_right = 212.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-
-[node name="settings2" type="TextureButton" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 216.0
-margin_right = 286.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture_normal = ExtResource( 8 )
-
-[node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer/_3"]
-margin_left = 290.0
-margin_right = 360.0
-margin_bottom = 64.0
-size_flags_horizontal = 3
+margin_bottom = 52.0
 
 [node name="__" type="MarginContainer" parent="ui/margin/container"]
-margin_top = 473.0
+margin_top = 509.0
 margin_right = 360.0
 margin_bottom = 675.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ui/margin/container/__"]
 margin_right = 360.0
-margin_bottom = 202.0
+margin_bottom = 166.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer"]
 margin_right = 360.0
-margin_bottom = 72.0
+margin_bottom = 64.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ui/margin/container/__/VBoxContainer"]
-margin_top = 76.0
+margin_top = 68.0
 margin_right = 360.0
-margin_bottom = 108.0
+margin_bottom = 98.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
-margin_right = 132.0
-margin_bottom = 32.0
+margin_right = 150.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
-margin_left = 136.0
-margin_right = 168.0
-margin_bottom = 32.0
-texture = ExtResource( 9 )
-
 [node name="coin_count" type="Label" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
-margin_left = 172.0
-margin_top = 1.0
-margin_right = 224.0
-margin_bottom = 31.0
-custom_fonts/font = SubResource( 2 )
+margin_left = 154.0
+margin_right = 206.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 1 )
 text = " X 0"
 align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer/HBoxContainer"]
-margin_left = 228.0
+margin_left = 210.0
 margin_right = 360.0
-margin_bottom = 32.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ui/margin/container/__/VBoxContainer"]
-margin_top = 112.0
+margin_top = 102.0
 margin_right = 360.0
-margin_bottom = 184.0
+margin_bottom = 166.0
 size_flags_vertical = 3
-
-[node name="credits" type="Label" parent="ui/margin/container/__/VBoxContainer"]
-margin_top = 188.0
-margin_right = 360.0
-margin_bottom = 202.0
-size_flags_vertical = 8
-text = "2020 Lumpy Productions"
-align = 2
 
 [node name="ad" type="Node" parent="ui/margin/container"]
 script = ExtResource( 11 )
 banner_on_top = false
 banner_id = "ca-app-pub-7417016807781274/7204296394"
-max_ad_content_rate = "T"
 
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
@@ -240,7 +196,7 @@ color = Color( 0.27451, 0.27451, 0.27451, 1 )
 [node name="torches" type="Node2D" parent="."]
 
 [node name="torch2" parent="torches" instance=ExtResource( 10 )]
-position = Vector2( 350, 164 )
+position = Vector2( 189.57, -138.278 )
 
 [node name="torches2" type="Node2D" parent="."]
 position = Vector2( -336, 0 )

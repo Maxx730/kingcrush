@@ -1,7 +1,9 @@
 extends Node;
 
 var DATA_PATH ='user://data.json';
-
+var INIT = {
+	"COINS": 0
+};
 var BALL_AMOUNT= 3;
 var SCORE = 0;
 var POWER = 1;
@@ -15,6 +17,7 @@ func _load_data():
 		return data;
 	else:
 		_create_data();
+		return INIT;
 
 func _save_data(data):
 	var file = File.new();
@@ -29,10 +32,11 @@ func _data_exists(path):
 func _create_data():
 	print('CREATING DATA FILE...');
 	var file = File.new();
-	var data = {
-		"COINS": 0
-	};
 	file.open(DATA_PATH, File.WRITE);
-	file.store_string(to_json(data));
+	file.store_string(to_json(INIT));
 	file.close();
 	
+func _reset_globals():
+	BALL_AMOUNT = 3;
+	WAVE = 1;
+	SCORE = 0;

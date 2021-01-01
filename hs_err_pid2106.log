@@ -1,0 +1,187 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+SIGBUS (0x7) at pc=0x00007f7ff0f5555e, tid=2124
+#
+# JRE version: OpenJDK Runtime Environment (11.0.9.1+1) (build 11.0.9.1+1-post-Debian-1deb10u2)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.9.1+1-post-Debian-1deb10u2, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0xbbf55e]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/sbin/crash_reporter --user=%P:%s:%u:%g:%f" (or dumping to /home/maxkinghorn/Godot/kingcrush/core.2106)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugs.debian.org/openjdk-11
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED -Xmx1536m -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant org.gradle.launcher.daemon.bootstrap.GradleDaemon 5.6.4
+
+Host: 06/8e, 4 cores, 14G, Debian GNU/Linux 10 (buster)
+Time: Tue Dec 29 12:14:12 2020 EST elapsed time: 37.193883 seconds (0d 0h 0m 37s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f7fe81a0000):  WatcherThread [stack: 0x00007f7fd00b0000,0x00007f7fd01b0000] [id=2124]
+
+Stack: [0x00007f7fd00b0000,0x00007f7fd01b0000],  sp=0x00007f7fd01aed40,  free space=1019k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xbbf55e]
+V  [libjvm.so+0xd16442]
+V  [libjvm.so+0xd85a2b]
+V  [libjvm.so+0xdab7f4]
+V  [libjvm.so+0xdb0a89]
+V  [libjvm.so+0xb75f1e]
+
+
+siginfo: si_signo: 7 (SIGBUS), si_code: 2 (BUS_ADRERR), si_addr: 0x00007f7feff25360
+
+Register to memory mapping:
+
+RAX=0x00000008918a1abf is an unknown value
+RBX=0x00007f7feff25360 points into unknown readable memory: da 8a 72 8c 08 00 00 00
+RCX=0x0000000000001170 is an unknown value
+RDX=0x00000687e81a47ed is an unknown value
+RSP=0x00007f7fd01aed40 points into unknown readable memory: 07 00 00 00 00 00 00 00
+RBP=0x00007f7fd01aed50 points into unknown readable memory: 70 ed 1a d0 7f 7f 00 00
+RSI=0x00007f7fd01aed20 points into unknown readable memory: 70 11 00 00 00 00 00 00
+RDI=0x000000003082c752 is an unknown value
+R8 =0x00007ffd5ab9d080 points into unknown readable memory: 4a 4b 5c 00 01 00 00 00
+R9 =0x00007ffd5ab9d0b8 points into unknown readable memory: 36 6c 22 63 fb 7c 0c 00
+R10=0x00000000005c483c is an unknown value
+R11=0x0000000000001170 is an unknown value
+R12=0x00007f7fe819f850 points into unknown readable memory: 70 f8 19 e8 7f 7f 00 00
+R13=0x0000000000000001 is an unknown value
+R14=0x0000000000000001 is an unknown value
+R15=0x0000000000000002 is an unknown value
+
+
+Registers:
+RAX=0x00000008918a1abf, RBX=0x00007f7feff25360, RCX=0x0000000000001170, RDX=0x00000687e81a47ed
+RSP=0x00007f7fd01aed40, RBP=0x00007f7fd01aed50, RSI=0x00007f7fd01aed20, RDI=0x000000003082c752
+R8 =0x00007ffd5ab9d080, R9 =0x00007ffd5ab9d0b8, R10=0x00000000005c483c, R11=0x0000000000001170
+R12=0x00007f7fe819f850, R13=0x0000000000000001, R14=0x0000000000000001, R15=0x0000000000000002
+RIP=0x00007f7ff0f5555e, EFLAGS=0x0000000000010212, CSGSFS=0x002b000000000033, ERR=0x0000000000000007
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f7fd01aed40)
+0x00007f7fd01aed40:   0000000000000007 0000000000000001
+0x00007f7fd01aed50:   00007f7fd01aed70 00007f7ff10ac442
+0x00007f7fd01aed60:   0000000000000032 00007f7ff15a7f80
+0x00007f7fd01aed70:   00007f7fd01aedc0 00007f7ff111ba2b 
+
+Instructions: (pc=0x00007f7ff0f5555e)
+0x00007f7ff0f5545e:   ff ff c6 83 80 04 00 00 01 48 8d bb 58 04 00 00
+0x00007f7ff0f5546e:   48 89 de e8 aa 2a c0 ff c6 83 80 04 00 00 00 e9
+0x00007f7ff0f5547e:   ed fd ff ff 66 0f 1f 44 00 00 48 8d 05 19 76 5e
+0x00007f7ff0f5548e:   00 48 8d 0d 7e 71 34 00 48 8d 15 8d 71 34 00 be
+0x00007f7ff0f5549e:   44 01 00 00 48 8d 3d 6f 70 34 00 48 8b 00 c6 00
+0x00007f7ff0f554ae:   58 31infinity , MEMLOCK infinity/infinity
+load average:2.13 1.19 0.73
+
+/proc/meminfo:
+MemTotal:       14900428 kB
+MemFree:        14861484 kB
+MemAvailable:   14891448 kB
+Buffers:               0 kB
+Cached:            29964 kB
+SwapCached:            0 kB
+Active:            23232 kB
+Inactive:           9636 kB
+Active(anon):       2904 kB
+Inactive(anon):        0 kB
+Active(file):      20328 kB
+Inactive(file):     9636 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:           132 kB
+AnonPages:        688400 kB
+Mapped:           190036 kB
+Shmem:                 0 kB
+KReclaimable:     148456 kB
+Slab:               0 kB
+SReclaimable:          0 kB
+SUnreclaim:            0 kB
+KernelStack:        4680 kB
+PageTables:         5424 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     7450212 kB
+Committed_AS:    2029636 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:        5108 kB
+VmallocChunk:          0 kB
+Percpu:             1552 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:       53248 kB
+DirectMap2M:     5939200 kB
+DirectMap1G:    10485760 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled:
+always [madvise] never
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter):
+always defer defer+madvise [madvise] never
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads):
+116370
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have):
+262144
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers):
+32768
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-3
+cpu_memory_nodes: 0
+active_processor_count: 4
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -2
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 5264842752
+memory_max_usage_in_bytes: 5479026688
+
+KVM virtualization detected
+Steal ticks since vm start: 1696
+Steal ticks percentage since vm start:  0.042
+
+CPU:total 4 (initial active 4) (4 cores per cpu, 1 threads per core) family 6 model 142 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, tsc, tscinvbit, bmi1, bmi2, adx, fma
+CPU Model and flags from /proc/cpuinfo:
+model name	: 06/8e
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 arat md_clear arch_capabilities
+Online cpus:
+0-3
+Offline cpus:
+
+BIOS frequency limitation:
+<Not Available>
+Frequency switch latency (ns):
+<Not Available>
+Available cpu frequencies:
+<Not Available>
+Current governor:
+<Not Available>
+Core performance/turbo boost:
+<Not Available>
+
+Memory: 4k page, physical 14900428k(2064660k free), swap 0k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.9.1+1-post-Debian-1deb10u2) for linux-amd64 JRE (11.0.9.1+1-post-Debian-1deb10u2), built on Nov 28 2020 17:42:37 by "unknown" with gcc 8.3.0
+
+END.

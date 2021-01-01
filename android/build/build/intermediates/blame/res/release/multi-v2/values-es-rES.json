@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/john/kingcrush/android/build/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-es-rES/values-es-rES.xml",
+            "outputFile": "/home/maxkinghorn/Godot/kingcrush/android/build/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-es-rES/values-es-rES.xml",
             "map": [
                 {
-                    "source": "/home/john/.gradle/caches/transforms-2/files-2.1/2f29423de5771cd0c2f475b364e10860/godot-lib.release/res/values-es-rES/values-es-rES.xml",
+                    "source": "/home/maxkinghorn/.gradle/caches/transforms-2/files-2.1/2f29423de5771cd0c2f475b364e10860/godot-lib.release/res/values-es-rES/values-es-rES.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

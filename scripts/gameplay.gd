@@ -54,6 +54,7 @@ func _ready() -> void:
 		print(balls.size());
 	
 func _process(delta: float) -> void:
+	BALL_LABEL.text = ' X ' + String(global.BALL_AMOUNT);
 	if LEVEL_BETWEEN_LAST > LEVEL_BETWEEN_WAIT:
 		if LAST_SHOT > SHOT_SPEED and HAS_SHOT:
 			if FIRED < global.BALL_AMOUNT:

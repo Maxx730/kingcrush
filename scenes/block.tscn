@@ -50,4 +50,3 @@ hframes = 4
 [node name="anim" type="AnimationPlayer" parent="sprite"]
 autoplay = "idle"
 anims/idle = SubResource( 2 )
-

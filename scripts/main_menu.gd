@@ -7,7 +7,9 @@ func _ready() -> void:
 	global.SCORE = 0;
 	
 	var data = global._load_data();
-	#get_node('ui/margin/container/__/VBoxContainer/HBoxContainer/coin_count').text = ' X ' + String(data.COINS);
+	print(data);
+	if data.COINS:
+		get_node('ui/margin/container/__/VBoxContainer/HBoxContainer/coin_count').text = ' X ' + String(data.COINS);
 	AD = get_node("ui/margin/container/ad");
 	AD.load_banner();
 
@@ -16,7 +18,7 @@ func _on_play_game_pressed() -> void:
 
 
 func _on_store_button_pressed():
-	get_tree().change_scene('res://scenes/full_ad.tscn');
+	get_tree().change_scene('res://scenes/store.tscn');
 
 
 func _on_ad_banner_loaded():

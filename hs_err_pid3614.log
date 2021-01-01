@@ -1,0 +1,66 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0x7) at pc=0x00007cf0d45c79d6, pid=3614, tid=3638
+#
+# JRE version: OpenJDK Runtime Environment (11.0.9.1+1) (build 11.0.9.1+1-post-Debian-1deb10u2)
+# Java VM: OpenJDK 64-Bit Server VM (11.0.9.1+1-post-Debian-1deb10u2, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0x59a9d6]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/sbin/crash_reporter --user=%P:%s:%u:%g:%f" (or dumping to /home/maxkinghorn/Godot/kingcrush/core.3614)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugs.debian.org/openjdk-11
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dorg.gradle.appname=gradlew org.gradle.wrapper.GradleWrapperMain build -Pexport_package_name=com.kinghorn.rabrev -Pplugins_local_binaries=/home/maxkinghorn/Godot/kingcrush/android/plugins/GodotAdMob.4.1.1.release.aar -Pplugins_remote_binaries=com.google.android.gms:play-services-ads:19.3.0 -Pplugins_maven_repos= -p /home/maxkinghorn/Godot/kingcrush/android/build
+
+Host: 06/8e, 4 cores, 14G, Debian GNU/Linux 10 (buster)
+Time: Tue Dec 29 12:52:54 2020 EST elapsed time: 1.056932 seconds (0d 0h 0m 1s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007cf0cc016800):  JavaThread "main" [_thread_in_vm, id=3638, stack(0x00007cf0d3c0b000,0x00007cf0d3d0c000)]
+
+Stack: [0x00007cf0d3c0b000,0x00007cf0d3d0c000],  sp=0x00007cf0d3d08750,  free space=1013k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x59a9d6]
+V  [libjvm.so+0xd7e4e6]
+V  [libjvm.so+0xd7d4d2]
+V  [libjvm.so+0xd7f9d6]
+V  [libjvm.so+0x6407dd]
+V  [libjvm.so+0x640c42]
+V  [libjvm.so+0x9f0f73]
+V  [libjvm.so+0x826ef5]
+V  [libjvm.so+0x827c4d]
+j  org.gradle.internal.classloader.ClassLoaderVisitor.visit(Ljava/lang/ClassLoader;)V+9
+j  org.gradle.internal.classloader.ClassLoaderVisitor.visitParent(Ljava/lang/ClassLoader;)V+2
+j  org.gradle.internal.classloader.ClassLoaderVisitor.visit(Ljava/lang/ClassLoader;)V+76
+j  org.gradle.internal.classloader.ClassLoaderVisitor.visitParent(Ljava/lang/ClassLoader;)V+2
+j  org.gradle.internal.classloader.ClassLoaderVisitor.visit(Ljava/lang/ClassLoader;)V+76
+j  org.gradle.internal.classloader.ClasspathUtil.collectClasspathOf(Ljava/lang/ClassLoader;Ljava/util/Collection;)V+9
+j  org.gradle.internal.classloader.ClasspathUtil.getClasspath(Ljava/lang/ClassLoader;)Lorg/gradle/internal/classpath/ClassPath;+10
+j  org.gradle.api.internal.classpath.EffectiveClassPath.findAvailableClasspathFiles(Ljava/lang/ClassLoader;)Ljava/util/List;+1
+j  org.gradle.api.internal.classpath.EffectiveClassPath.<init>(Ljava/lang/ClassLoader;)V+6
+j  org.gradle.api.internal.classpath.DefaultModuleRegistry.<init>(Ljava/lang/ClassLoader;Lorg/gradle/internal/classpath/ClassPath;Lorg/gradle/internal/installation/GradleInstallation;)V+58
+j  org.gradle.api.internal.classpath.DefaultModuleRegistry.<init>(Lorg/gradle/internal/classpath/ClassPath;Lorg/gradle/internal/installation/GradleInstallation;)V+8
+j  org.gradle.api.internal.classpath.DefaultModuleRegistry.<init>(Lorg/gradle/internal/installation/GradleInstallation;)V+5
+j  org.gradle.launcher.daemon.client.DefaultDaemonStarter.startDaemon(Z)Lorg/gradle/launcher/daemon/diagnostics/DaemonStartupInfo;+16
+j  org.gradle.launcher.daemon.client.DefaultDaemonConnector.doStartDaemon(Lorg/gradle/api/internal/specs/ExplainingSpec;Z)Lorg/gradle/launcher/daemon/client/DaemonClientConnection;+26
+j  org.gradle.launcher.daemon.client.DefaultDaemonConnector.startDaemon(Lorg/gradle/api/internal/specs/ExplainingSpec;)Lorg/gradle/launcher/daemon/client/DaemonClientConnection;+3
+j  org.gradle.launcher.daemon.client.DefaultDaemonConnector.connect(Lorg/gradle/api/internal/specs/ExplainingSpec;)Lorg/gradle/launcher/daemon/client/DaemonClientConnection;+76
++91
++9
+j  org.gradle.launcher.cli.RunBuildAction.run()V+78
+j  org.gradle.internal.Actions$RunnableActionAdapter.execute(Ljava/lang/Object;)V+4
++124
++5
++5
++5
++355
++14
++12
+v  ~StubRoutines::call_stub

@@ -7,6 +7,7 @@ var RAND = RandomNumberGenerator.new();
 var ANIM = null;
 var GAMEPLAY = null;
 var DESTROYED_ANIM = preload("res://scenes/block_destroyed.tscn");
+var SOUND = null;
 
 func _ready() -> void:
 	GAMEPLAY = get_parent().get_parent().get_parent();
@@ -34,5 +35,5 @@ func _damage_block(value):
 		
 	get_parent().get_parent()._check_row();
 	
-func _stop_shake():
+func _stop_shake(anim):
 	ANIM.stop();

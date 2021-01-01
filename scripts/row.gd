@@ -7,7 +7,9 @@ var BLOCKS = [{
 	'weight': 1,
 	'min': 0,
 	'max': 10,
-	'object': preload('res://scenes/crate.tscn')
+	'object': preload('res://scenes/crate.tscn'),
+	'name': 'crade',
+	'sound': null
 },{
 	'weight': 1,
 	'min': 5,
@@ -23,6 +25,11 @@ var BLOCKS = [{
 	'min': 20,
 	'max': 35,
 	'object': preload('res://scenes/sandbag.tscn')
+}, {
+	'weight': 1,
+	'min': 10,
+	'max': -1,
+	'object': preload('res://scenes/armor_stand.tscn')
 }];
 var RAND = RandomNumberGenerator.new();
 var HAS_CHEST = false;
@@ -43,9 +50,9 @@ func _random_type(_child):
 	var rand = RAND.randf_range(0, 1);
 	
 	# 4% chance of loading a chest or spike
-	if rand > 0.96 and !HAS_CHEST and !HAS_SPIKE:
+	if rand > 0.55 and !HAS_CHEST and !HAS_SPIKE:
 		#50/50 chance of spawning a chest or spike aftwards
-		if rand < 0.98:
+		if rand < 0.75:
 			POINTS.append(_child);
 			var add_ball = ADD_BALL.instance();
 			_child.add_child(add_ball);
@@ -64,16 +71,16 @@ func _random_type(_child):
 		_get_block(_child);
 		
 func _get_block(_child):
-	var total_weight = 0;
 	var pool = [];
 	
 	#Create the pool of potential blocks	
 	for i in range(BLOCKS.size()):
-		if BLOCKS[i].max > global.WAVE and BLOCKS[i].min < global.WAVE:
+		# -1 indicates that the block will never stop spawning regardless of the wave.
+		if (BLOCKS[i].max > global.WAVE or BLOCKS[i].max == -1) and BLOCKS[i].min < global.WAVE:
 			pool.append(BLOCKS[i]);
 	
 	RAND.randomize();
 	var rand = RAND.randi_range(0, pool.size());
-	var block = pool[rand].object.instance();
+	var block = pool[rand - 1].object.instance();
 	POINTS.append(_child);
 	_child.add_child(block);

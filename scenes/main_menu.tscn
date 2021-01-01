@@ -188,12 +188,13 @@ size_flags_vertical = 3
 [node name="ad" type="Node" parent="ui/margin/container"]
 script = ExtResource( 11 )
 banner_on_top = false
-banner_id = "ca-app-pub-7417016807781274/7204296394"
+banner_id = "ca-app-pub-7417016807781274/1547451002"
 
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
 [node name="torches" type="Node2D" parent="."]
+position = Vector2( 159.798, 300.548 )
 
 [node name="torch2" parent="torches" instance=ExtResource( 10 )]
 position = Vector2( 189.57, -138.278 )

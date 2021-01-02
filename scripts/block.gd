@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 export var HITPOINTS = 5;
+export (bool) var IS_ANIMATED = false;
 
 var HITPOINT_LABEL = null;
 var RAND = RandomNumberGenerator.new();
@@ -14,7 +15,7 @@ func _ready() -> void:
 	RAND.randomize();
 	HITPOINT_LABEL = get_node("health");
 	HITPOINT_LABEL.text = String(HITPOINTS);
-	if has_node('sprite/anim'):
+	if has_node('sprite/anim') && !IS_ANIMATED:
 		ANIM = get_node('sprite/anim');
 		ANIM.stop();
 		ANIM.connect('animation_finished', self, '_stop_shake');

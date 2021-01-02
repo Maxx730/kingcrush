@@ -27,9 +27,19 @@ var BLOCKS = [{
 	'object': preload('res://scenes/sandbag.tscn')
 }, {
 	'weight': 1,
-	'min': 10,
+	'min': 30,
 	'max': -1,
 	'object': preload('res://scenes/armor_stand.tscn')
+}, {
+	'weight': 1,
+	'min': 30,
+	'max': -1,
+	'object': preload('res://scenes/enemies/spider.tscn')
+}, {
+	'weight': 1,
+	'min': 35,
+	'max': -1,
+	'object': preload('res://scenes/enemies/bat.tscn')
 }];
 var RAND = RandomNumberGenerator.new();
 var HAS_CHEST = false;

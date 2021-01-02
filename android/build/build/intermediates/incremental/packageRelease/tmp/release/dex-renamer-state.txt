@@ -1,4 +1,4 @@
-#Thu Dec 31 20:36:46 EST 2020
+#Fri Jan 01 16:45:48 EST 2021
 base.0=/home/maxkinghorn/Godot/kingcrush/android/build/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

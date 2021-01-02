@@ -4,6 +4,64 @@ var DATA_PATH ='user://data.json';
 var INIT = {
 	"COINS": 0
 };
+var UNLOCKS = {
+	"PROJECTILES": [
+		{
+			"name": "White",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(255, 255, 255, 255)
+		},
+		{
+			"name": "Red",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(255, 0, 0, 255)
+		},
+		{
+			"name": "Green",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(0, 255, 0, 255)
+		},
+		{
+			"name": "Blue",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(0, 0, 255, 255)
+		},
+		{
+			"name": "Orange",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(235, 152, 52, 255)
+		},
+		{
+			"name": "Purple",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(195, 53, 235, 255)
+		},
+		{
+			"name": "Pink",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(235, 52, 174, 255)
+		},
+		{
+			"name": "Lime",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(140, 235, 52, 255)
+		},
+		{
+			"name": "Cyan",
+			"price": 0,
+			"unlocked":  false,
+			"value": _get_color(52, 235, 222, 255)
+		}
+	]
+};
 var BALL_AMOUNT= 3;
 var SCORE = 0;
 var POWER = 1;
@@ -40,3 +98,11 @@ func _reset_globals():
 	BALL_AMOUNT = 3;
 	WAVE = 1;
 	SCORE = 0;
+
+func _get_color(r, g, b, a):
+	return Color(
+		float (float (1.0 / 255.0) * r),
+		float (float (1.0 / 255.0) * g),
+		float (float (1.0 / 255.0) * b),
+		float (float (1.0 / 255.0) * a)
+	);

@@ -1,17 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/store.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/village.tres" type="TileSet" id=2]
 [ext_resource path="res://scenes/torch.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/ArrowB_Left1.png" type="Texture" id=4]
 [ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/ball.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 5 )
 
-[node name="store" type="Node2D"]
+[node name="store" type="Node2D" groups=[
+"store",
+]]
 script = ExtResource( 1 )
 
 [node name="map" type="TileMap" parent="."]
@@ -20,7 +20,7 @@ scale = Vector2( 3, 3 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 20, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 14, 0, 6, 14, 0, 7, 29, 0, 65536, 17, 0, 65537, 46, 0, 65538, 48, 0, 65539, 46, 0, 65540, 48, 0, 65541, 48, 0, 65542, 53, 0, 65543, 19, 0, 131072, 17, 0, 131073, 49, 0, 131074, 48, 0, 131075, 49, 0, 131076, 48, 0, 131077, 49, 0, 131078, 48, 0, 131079, 19, 0, 196608, 17, 0, 196609, 48, 0, 196610, 49, 0, 196611, 48, 0, 196612, 49, 0, 196613, 48, 0, 196614, 49, 0, 196615, 19, 0, 262144, 17, 0, 262145, 47, 0, 262146, 52, 0, 262147, 49, 0, 262148, 52, 0, 262149, 49, 0, 262150, 48, 0, 262151, 19, 0, 327680, 17, 0, 327681, 49, 0, 327682, 49, 0, 327683, 49, 0, 327684, 49, 0, 327685, 47, 0, 327686, 49, 0, 327687, 19, 0, 393216, 17, 0, 393217, 40, 0, 393218, 43, 0, 393219, 43, 0, 393220, 41, 0, 393221, 41, 0, 393222, 45, 0, 393223, 19, 0, 458752, 17, 0, 458753, 40, 0, 458754, 41, 0, 458755, 41, 0, 458756, 41, 0, 458757, 43, 0, 458758, 45, 0, 458759, 19, 0, 524288, 17, 0, 524289, 40, 0, 524290, 41, 0, 524291, 43, 0, 524292, 41, 0, 524293, 41, 0, 524294, 45, 0, 524295, 19, 0, 589824, 17, 0, 589825, 40, 0, 589826, 41, 0, 589827, 43, 0, 589828, 43, 0, 589829, 43, 0, 589830, 45, 0, 589831, 19, 0, 655360, 17, 0, 655361, 40, 0, 655362, 43, 0, 655363, 41, 0, 655364, 41, 0, 655365, 43, 0, 655366, 45, 0, 655367, 19, 0, 720896, 17, 0, 720897, 40, 0, 720898, 41, 0, 720899, 43, 0, 720900, 43, 0, 720901, 41, 0, 720902, 45, 0, 720903, 19, 0, 786432, 17, 0, 786433, 40, 0, 786434, 41, 0, 786435, 41, 0, 786436, 41, 0, 786437, 43, 0, 786438, 45, 0, 786439, 19, 0, 851968, 17, 0, 851969, 40, 0, 851970, 43, 0, 851971, 41, 0, 851972, 41, 0, 851973, 41, 0, 851974, 45, 0, 851975, 19, 0, 917504, 17, 0, 917505, 40, 0, 917506, 43, 0, 917507, 41, 0, 917508, 43, 0, 917509, 43, 0, 917510, 45, 0, 917511, 19, 0, 983040, 5, 0, 983041, 14, 0, 983042, 14, 0, 983043, 14, 0, 983044, 14, 0, 983045, 14, 0, 983046, 14, 0, 983047, 11, 0 )
+tile_data = PoolIntArray( 0, 20, 0, 1, 14, 0, 2, 14, 0, 3, 14, 0, 4, 14, 0, 5, 14, 0, 6, 14, 0, 7, 29, 0, 65536, 17, 0, 65537, 46, 0, 65538, 48, 0, 65539, 46, 0, 65540, 48, 0, 65541, 48, 0, 65542, 53, 0, 65543, 19, 0, 131072, 17, 0, 131073, 49, 0, 131074, 48, 0, 131075, 49, 0, 131076, 48, 0, 131077, 49, 0, 131078, 48, 0, 131079, 19, 0, 196608, 17, 0, 196609, 48, 0, 196610, 49, 0, 196611, 48, 0, 196612, 49, 0, 196613, 48, 0, 196614, 49, 0, 196615, 19, 0, 262144, 17, 0, 262145, 47, 0, 262146, 52, 0, 262147, 49, 0, 262148, 52, 0, 262149, 49, 0, 262150, 48, 0, 262151, 19, 0, 327680, 17, 0, 327681, 49, 0, 327682, 49, 0, 327683, 49, 0, 327684, 49, 0, 327685, 47, 0, 327686, 49, 0, 327687, 19, 0, 393216, 17, 0, 393217, 40, 0, 393218, 43, 0, 393219, 43, 0, 393220, 41, 0, 393221, 41, 0, 393222, 45, 0, 393223, 19, 0, 458752, 17, 0, 458753, 40, 0, 458754, 41, 0, 458755, 41, 0, 458756, 41, 0, 458757, 43, 0, 458758, 45, 0, 458759, 19, 0, 524288, 17, 0, 524289, 40, 0, 524290, 41, 0, 524291, 43, 0, 524292, 41, 0, 524293, 41, 0, 524294, 45, 0, 524295, 19, 0, 589824, 17, 0, 589825, 40, 0, 589826, 41, 0, 589827, 43, 0, 589828, 43, 0, 589829, 43, 0, 589830, 45, 0, 589831, 19, 0, 655360, 17, 0, 655361, 40, 0, 655362, 43, 0, 655363, 41, 0, 655364, 41, 0, 655365, 43, 0, 655366, 45, 0, 655367, 19, 0, 720896, 17, 0, 720897, 40, 0, 720898, 41, 0, 720899, 43, 0, 720900, 43, 0, 720901, 41, 0, 720902, 45, 0, 720903, 19, 0, 786432, 17, 0, 786433, 40, 0, 786434, 41, 0, 786435, 41, 0, 786436, 41, 0, 786437, 43, 0, 786438, 45, 0, 786439, 19, 0, 851968, 17, 0, 851969, 40, 0, 851970, 43, 0, 851971, 41, 0, 851972, 41, 0, 851973, 41, 0, 851974, 45, 0, 851975, 19, 0, 917504, 17, 0, 917505, 40, 0, 917506, 43, 0, 917507, 41, 0, 917508, 43, 0, 917509, 43, 0, 917510, 45, 0, 917511, 19, 0, 983040, 5, 0, 983041, 14, 0, 983042, 14, 0, 983043, 14, 0, 983044, 38, 0, 983045, 14, 0, 983046, 14, 0, 983047, 11, 0 )
 
 [node name="over" type="TileMap" parent="."]
 position = Vector2( -13, -12 )
@@ -28,7 +28,7 @@ scale = Vector2( 3, 3 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327681, 86, 0, 327682, 87, 0, 327683, 81, 0, 327684, 85, 0, 327685, 88, 0, 327686, 89, 0, 458754, 127, 0, 458755, 128, 0, 458756, 128, 0, 458757, 129, 0, 524290, 130, 0, 524291, 122, 0, 524292, 122, 0, 524293, 132, 0, 589826, 130, 0, 589827, 131, 0, 589828, 131, 0, 589829, 132, 0, 655362, 130, 0, 655363, 131, 0, 655364, 131, 0, 655365, 132, 0, 720898, 130, 0, 720899, 131, 0, 720900, 131, 0, 720901, 132, 0, 786434, 130, 0, 786435, 122, 0, 786436, 122, 0, 786437, 132, 0, 851970, 133, 0, 851971, 134, 0, 851972, 134, 0, 851973, 135, 0 )
+tile_data = PoolIntArray( 327681, 86, 0, 327682, 87, 0, 327683, 81, 0, 327684, 85, 0, 327685, 88, 0, 327686, 89, 0, 458754, 127, 0, 458755, 128, 0, 458756, 128, 0, 458757, 129, 0, 524290, 130, 0, 524291, 122, 0, 524292, 122, 0, 524293, 132, 0, 589826, 130, 0, 589827, 131, 0, 589828, 131, 0, 589829, 132, 0, 655362, 130, 0, 655363, 131, 0, 655364, 131, 0, 655365, 132, 0, 720898, 130, 0, 720899, 131, 0, 720900, 131, 0, 720901, 132, 0, 786434, 130, 0, 786435, 122, 0, 786436, 122, 0, 786437, 132, 0, 851970, 133, 0, 851971, 134, 0, 851972, 134, 0, 851973, 135, 0, 983043, 15, 0, 983044, 136, 0, 983045, 13, 0 )
 
 [node name="deco" type="TileMap" parent="."]
 position = Vector2( -13, -12 )
@@ -36,7 +36,15 @@ scale = Vector2( 3, 3 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 458755, 106, 0, 458756, 107, 0, 524291, 108, 0, 524292, 109, 0, 589827, 108, 0, 589828, 109, 0, 655363, 108, 0, 655364, 109, 0, 720899, 108, 0, 720900, 109, 0, 786435, 110, 0, 786436, 111, 0 )
+tile_data = PoolIntArray( 1, 96, 0, 2, 97, 0, 3, 98, 0, 4, 99, 0, 65537, 102, 0, 65538, 103, 0, 65539, 104, 0, 65540, 105, 0, 65541, 92, 0, 65542, 93, 0, 131077, 93, 0, 458755, 106, 0, 458756, 107, 0, 524291, 108, 0, 524292, 109, 0, 589826, 117, 0, 589827, 108, 0, 589828, 109, 0, 589829, 117, 0, 655363, 108, 0, 655364, 109, 0, 720898, 117, 0, 720899, 108, 0, 720900, 109, 0, 720901, 117, 0, 786435, 110, 0, 786436, 111, 0 )
+
+[node name="deco2" type="TileMap" parent="."]
+position = Vector2( -13, -12 )
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 1, 96, 0, 2, 97, 0, 3, 98, 0, 4, 99, 0, 65537, 102, 0, 65538, 103, 0, 65539, 104, 0, 65540, 105, 0, 65541, 92, 0, 65542, 93, 0, 131077, 93, 0, 393217, 90, 0, 393218, 91, 0, 458755, 106, 0, 458756, 107, 0, 524291, 108, 0, 524292, 109, 0, 589826, 117, 0, 589827, 108, 0, 589828, 142, 0, 589829, 117, 0, 655363, 139, 0, 655364, 140, 0, 720898, 117, 0, 720899, 108, 0, 720900, 142, 0, 720901, 117, 0, 786435, 110, 0, 786436, 111, 0, 851969, 143, 0, 851974, 143, 0, 917505, 144, 0, 917510, 144, 0 )
 
 [node name="shade" type="CanvasModulate" parent="."]
 color = Color( 0.301961, 0.301961, 0.301961, 1 )
@@ -44,38 +52,58 @@ color = Color( 0.301961, 0.301961, 0.301961, 1 )
 [node name="torch" parent="." instance=ExtResource( 3 )]
 position = Vector2( 201.124, 213.292 )
 
+[node name="torch2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 347.958, 674.771 )
+
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="margin" type="MarginContainer" parent="ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 12.0
-margin_top = 12.0
-margin_right = -24.0
+mouse_filter = 1
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="contain" type="VBoxContainer" parent="ui/margin"]
-margin_right = 324.0
-margin_bottom = 728.0
-
-[node name="top" type="HBoxContainer" parent="ui/margin/contain"]
-editor/display_folded = true
-margin_right = 324.0
-margin_bottom = 64.0
-
-[node name="horizontal" type="HBoxContainer" parent="ui/margin/contain/top"]
-margin_right = 324.0
-margin_bottom = 64.0
+margin_right = 360.0
+margin_bottom = 740.0
 size_flags_horizontal = 3
 
-[node name="back" type="TextureButton" parent="ui/margin/contain/top/horizontal"]
-margin_right = 64.0
-margin_bottom = 64.0
-texture_normal = ExtResource( 4 )
+[node name="top" type="MarginContainer" parent="ui/margin/contain"]
+margin_right = 360.0
+margin_bottom = 50.0
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+
+[node name="horizontal" type="HBoxContainer" parent="ui/margin/contain/top"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 354.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="back" type="Button" parent="ui/margin/contain/top/horizontal"]
+margin_right = 113.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+text = "MAIN MENU"
+
+[node name="MarginContainer" type="MarginContainer" parent="ui/margin/contain/top/horizontal"]
+margin_left = 117.0
+margin_right = 230.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="coin_count" type="Label" parent="ui/margin/contain/top/horizontal"]
-margin_left = 68.0
-margin_right = 324.0
-margin_bottom = 64.0
+margin_left = 234.0
+margin_right = 348.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -83,50 +111,30 @@ text = " X 0"
 align = 2
 valign = 1
 
-[node name="scroll" type="ScrollContainer" parent="ui/margin/contain"]
-margin_top = 68.0
-margin_right = 324.0
-margin_bottom = 728.0
-mouse_filter = 2
+[node name="MarginContainer" type="MarginContainer" parent="ui/margin/contain"]
+margin_top = 54.0
+margin_right = 360.0
+margin_bottom = 740.0
 size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 80
+
+[node name="scroll" type="ScrollContainer" parent="ui/margin/contain/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 340.0
+margin_bottom = 606.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="contain" type="VBoxContainer" parent="ui/margin/contain/scroll"]
-margin_right = 324.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-
-[node name="list_item" type="MarginContainer" parent="ui/margin/contain/scroll/contain"]
-editor/display_folded = true
-margin_right = 324.0
-margin_bottom = 24.0
-mouse_filter = 2
-size_flags_horizontal = 3
+[node name="contain" type="VBoxContainer" parent="ui/margin/contain/MarginContainer/scroll"]
+margin_right = 320.0
+margin_bottom = 586.0
+size_flags_horizontal = 7
 size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="ui/margin/contain/scroll/contain/list_item"]
-margin_right = 324.0
-margin_bottom = 24.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ui/margin/contain/scroll/contain/list_item/MarginContainer"]
-margin_right = 324.0
-margin_bottom = 24.0
-
-[node name="TextureRect" type="TextureRect" parent="ui/margin/contain/scroll/contain/list_item/MarginContainer/HBoxContainer"]
-margin_right = 24.0
-margin_bottom = 24.0
-texture = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="ui/margin/contain/scroll/contain/list_item/MarginContainer/HBoxContainer"]
-margin_left = 28.0
-margin_top = 5.0
-margin_right = 81.0
-margin_bottom = 19.0
-text = "TESTING"
-
-[node name="ColorRect" type="ColorRect" parent="ui/margin/contain/scroll/contain/list_item"]
-margin_right = 324.0
-margin_bottom = 24.0
-color = Color( 0, 0, 0, 0.364706 )
-
 [connection signal="pressed" from="ui/margin/contain/top/horizontal/back" to="." method="_on_back_pressed"]

@@ -21,6 +21,7 @@ func _start(dir, pos, gameplay):
 	GAMEPLAY = gameplay;
 
 func _process(delta: float) -> void:
+			
 	if TRAIL.points.size() > 5:
 		TRAIL.remove_point(0);
 	else:	
@@ -64,3 +65,17 @@ func _process(delta: float) -> void:
 func _apply_chest_type(chest):
 	if chest:
 		print(chest.TYPE);
+
+func _convert_rgb(r, g, b, a):
+	return Color(
+		_convert_color(r),
+		_convert_color(g),
+		_convert_color(b),
+		_convert_color(a)
+	);
+	
+func _convert_color(value):
+	return (1.0 / 255.0) * value;
+
+func _float_rgb(value):
+	return value * 255.0;

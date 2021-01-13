@@ -117,10 +117,11 @@ margin_bottom = 52.0
 [node name="spacer" type="MarginContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
 margin_top = 56.0
 margin_right = 360.0
-margin_bottom = 110.0
+margin_bottom = 166.0
 size_flags_vertical = 3
 
 [node name="_2" type="HBoxContainer" parent="ui/margin/container/spacer3/VBoxContainer"]
+visible = false
 margin_top = 114.0
 margin_right = 360.0
 margin_bottom = 166.0

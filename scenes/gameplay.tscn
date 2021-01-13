@@ -216,6 +216,7 @@ margin_right = 48.0
 size_flags_horizontal = 3
 
 [node name="pause_menu" type="MarginContainer" parent="ui"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3

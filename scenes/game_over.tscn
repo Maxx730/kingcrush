@@ -1,18 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/game_over.gd" type="Script" id=1]
 [ext_resource path="res://tilesets/dungeon.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/ThaleahFat.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/Items_Coin.png" type="Texture" id=4]
-[ext_resource path="res://assets/retry_button.png" type="Texture" id=5]
 [ext_resource path="res://assets/main_menu_button.png" type="Texture" id=6]
-[ext_resource path="res://assets/continue_button.png" type="Texture" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 48
 font_data = ExtResource( 3 )
 
@@ -51,62 +49,56 @@ size_flags_vertical = 0
 
 [node name="container" type="VBoxContainer" parent="ui/margin"]
 margin_right = 360.0
-margin_bottom = 428.0
+margin_bottom = 380.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="continue" type="TextureButton" parent="ui/margin/container"]
-margin_left = 36.0
-margin_right = 324.0
-margin_bottom = 96.0
-size_flags_horizontal = 4
-texture_normal = ExtResource( 7 )
-
 [node name="HBoxContainer" type="HBoxContainer" parent="ui/margin/container"]
+visible = false
 margin_left = 136.0
-margin_bottom = 180.0
+margin_right = 224.0
+margin_bottom = 132.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 alignment = 1
 
 [node name="coin" type="TextureRect" parent="ui/margin/container/HBoxContainer"]
 margin_right = 32.0
-margin_bottom = 180.0
+margin_bottom = 132.0
 size_flags_vertical = 3
 texture = ExtResource( 4 )
 stretch_mode = 1
 
 [node name="winnings" type="Label" parent="ui/margin/container/HBoxContainer"]
 margin_left = 36.0
-margin_top = 75.0
+margin_top = 51.0
 margin_right = 88.0
-margin_bottom = 105.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 1 )
 text = " X 0"
 
 [node name="score" type="Label" parent="ui/margin/container"]
-margin_top = 184.0
 margin_right = 360.0
-margin_bottom = 228.0
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
 text = "000"
 align = 1
 
-[node name="retry" type="TextureButton" parent="ui/margin/container"]
-margin_left = 36.0
-margin_top = 232.0
-margin_right = 324.0
-margin_bottom = 328.0
+[node name="retry" type="Button" parent="ui/margin/container"]
+margin_left = 157.0
+margin_top = 48.0
+margin_right = 202.0
+margin_bottom = 68.0
 size_flags_horizontal = 4
-texture_normal = ExtResource( 5 )
+text = "Retry"
+flat = true
 
 [node name="main_menu" type="TextureButton" parent="ui/margin/container"]
 margin_left = 36.0
-margin_top = 332.0
+margin_top = 72.0
 margin_right = 324.0
-margin_bottom = 428.0
+margin_bottom = 168.0
 size_flags_horizontal = 4
 texture_normal = ExtResource( 6 )
-[connection signal="pressed" from="ui/margin/container/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="ui/margin/container/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="ui/margin/container/main_menu" to="." method="_on_main_menu_pressed"]
